@@ -99,8 +99,6 @@
             height: 100% !important;
         }
         
-        .bank-card-value,
-        #priceValue,
         .search-input {
             -webkit-user-select: text !important;
             -moz-user-select: text !important;
@@ -131,15 +129,15 @@
         
         .liquid-glass,
         .star-button, .buy-ton-button, .search-filter, .filter-button, 
-        .filter-item, .price-button, .cart-button, .payment-methods-card,
-        .bank-card-item, .transfer-data-card, .transfer-data-controls,
+        .filter-item, .price-button, .cart-button,
         .selection-card, .statistics-card, .cart-item, .button-card,
         .full-width-button, .checkout-order-close-btn, .checkout-order-buy-btn,
-        .modal-content, .statistics-island, .fill-transfer-btn, .card,
+        .modal-content, .statistics-island, .card,
         .header-image, .search-button, .modal-header-left, .modal-header-center, 
         .modal-header-right, .checkout-product-card, .checkout-add-to-cart-btn, 
-        .checkout-buy-btn, .transfer-iframe-container, .clear-all-btn, .cart-buy-btn,
-        .faq-button, .contact-button, .warning-card, .reviews-button {
+        .checkout-buy-btn, .clear-all-btn, .cart-buy-btn,
+        .faq-button, .contact-button, .warning-card, .reviews-button,
+        .cart-summary-bar-inner, .checkout-cart-icon-btn, .pay-confirm-btn, .pay-icon-btn {
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
@@ -148,18 +146,19 @@
         
         .star-button::before, .buy-ton-button::before, .search-filter::before,
         .filter-button::before, .filter-item::before, .price-button::before,
-        .cart-button::before, .payment-methods-card::before, .bank-card-item::before,
-        .transfer-data-card::before, .transfer-data-controls::before,
+        .cart-button::before,
         .selection-card::before, .statistics-card::before, .cart-item::before,
         .button-card::before, .full-width-button::before, .modal-content::before,
-        .statistics-island::before, .fill-transfer-btn::before, .card::before,
+        .statistics-island::before, .card::before,
         .header-image::before, .search-button::before, .modal-header-left::before,
         .modal-header-center::before, .modal-header-right::before,
         .checkout-product-card::before, .checkout-add-to-cart-btn::before, 
-        .checkout-buy-btn::before, .transfer-iframe-container::before,
+        .checkout-buy-btn::before,
         .clear-all-btn::before, .cart-buy-btn::before,
         .faq-button::before, .contact-button::before, .warning-card::before,
-        .reviews-button::before {
+        .reviews-button::before,
+        .cart-summary-bar-inner::before, .checkout-cart-icon-btn::before,
+        .pay-confirm-btn::before, .pay-icon-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -178,11 +177,6 @@
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             pointer-events: none;
-        }
-        
-        .transfer-iframe-container::before {
-            z-index: 4;
-            border-radius: 24px;
         }
         
         .page-container {
@@ -479,6 +473,157 @@
             filter: brightness(0) invert(1);
         }
         
+        .cart-summary-bar {
+            position: fixed;
+            bottom: 99px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            padding: 0 16px;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .cart-summary-bar.visible {
+            display: flex;
+        }
+
+        .cart-summary-bar-inner {
+            width: 100%;
+            height: 58px;
+            border-radius: 30px;
+            background: rgba(34,34,40,0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                0 8px 24px rgba(0,0,0,0.65);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+        }
+
+        .cart-summary-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-summary-icon {
+            width: 21px;
+            height: 21px;
+            opacity: 0.9;
+            filter: brightness(0) invert(1);
+        }
+
+        .cart-summary-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .cart-summary-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-summary-price {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .cart-summary-arrow {
+            width: 18px;
+            height: 18px;
+            opacity: 0.6;
+            filter: brightness(0) invert(1);
+            transform: rotate(-90deg);
+        }
+
+        .checkout-cart-icon-btn {
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            background-color: rgba(52, 52, 57, 0.7);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .checkout-cart-icon-btn img {
+            width: 21px;
+            height: 21px;
+            opacity: 0.9;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .payment-buttons-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            padding: 1px 5px 4px 5px;
+        }
+
+        .pay-confirm-btn {
+            flex: 1;
+            background-color: rgba(0, 149, 255, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .pay-icon-btn {
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            background-color: rgba(52, 52, 57, 0.7);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .pay-icon-btn img {
+            width: 22px;
+            height: 22px;
+            opacity: 0.9;
+            filter: brightness(0) invert(1);
+        }
+
         .cards-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -749,15 +894,6 @@
             margin-bottom: 0;
         }
         
-        .modal-body .payment-methods-card {
-            margin-bottom: 14px;
-        }
-        
-        .modal-body .transfer-data-card {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-        
         .modal-body .checkout-product-card {
             margin-bottom: 0px;
         }
@@ -831,268 +967,6 @@
             font-size: 17px;
             font-weight: 500;
             flex: 1;
-        }
-
-        .payment-methods-card {
-            background-color: rgba(35, 35, 40, 0.7);
-            border-radius: 39px;
-            padding: 16px;
-            width: 100%;
-        }
-
-        .bank-card-container {
-            background-color: transparent;
-            border-radius: 27px;
-            padding: 0px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            width: 100%;
-        }
-
-        .bank-card-row {
-            display: flex;
-            gap: 14px;
-            width: 100%;
-        }
-
-        .bank-card-row.single {
-            height: 56px;
-        }
-
-        .bank-card-row.double {
-            height: 56px;
-        }
-
-        .bank-card-item {
-            background-color: rgba(42, 42, 47, 0.7);
-            border-radius: 27px;
-            padding: 0 15px 0 19px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .bank-card-item.full-width {
-            flex: 1;
-        }
-
-        .bank-card-item.wide {
-            flex: 2.2;
-        }
-
-        .bank-card-item.narrow {
-            flex: 1.5;
-        }
-
-        .bank-card-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            min-height: 29px;
-            padding-right: 11px;
-        }
-
-        .bank-card-icon-left {
-            width: 29px;
-            height: 29px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 13px;
-            flex-shrink: 0;
-        }
-
-        .bank-card-icon-left img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .bank-card-value {
-            color: white;
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            word-break: break-all;
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-            -ms-user-select: text !important;
-            user-select: text !important;
-        }
-
-        .bank-card-icon-right {
-            width: 21px;
-            height: 21px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.42;
-            flex-shrink: 0;
-        }
-
-        .bank-card-icon-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-        }
-
-        .transfer-data-card {
-            background-color: rgba(35, 35, 40, 0.7);
-            border-radius: 37px 37px 41px 41px;
-            width: 100%;
-            position: relative;
-            height: auto;
-            min-height: 216px;
-            max-height: calc(65vh - 200px);
-            overflow: hidden;
-            padding: 0;
-            border: none;
-        }
-
-        .transfer-data-header {
-            position: absolute;
-            top: 17px;
-            left: 17px;
-            right: 17px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-
-        .fill-transfer-btn {
-            background-color: rgba(51, 51, 57, 0.8);
-            border-radius: 25px;
-            padding: 11px 17px;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            height: 37px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            max-width: 70%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
-
-        .transfer-data-controls {
-            background-color: rgba(51, 51, 57, 0.8);
-            border-radius: 27px;
-            padding: 13px 13px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            height: 38px;
-            min-width: 34px;
-        }
-
-        .transfer-info-icon {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.9;
-        }
-
-        .transfer-info-icon img {
-            filter: brightness(0) invert(1);
-        }
-
-        .transfer-iframe-container {
-            width: 100%;
-            height: 216px;
-            border-radius: 42px 42px 46px 46px;
-            overflow: hidden;
-            background-color: rgba(35, 35, 40, 0.7);
-            position: relative;
-            isolation: isolate;
-        }
-        
-        .transfer-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: white;
-            border-radius: 10px;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            opacity: 0;
-            transition: opacity 0.01s ease;
-        }
-        
-        .transfer-iframe.loaded {
-            opacity: 1;
-        }
-        
-        .transfer-iframe-container::after {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            width: 0px;
-            height: 0px;
-            background: rgba(35, 35, 40, 0.7);
-            border-radius: 0 0 12px 0;
-            z-index: 3;
-        }
-        
-        .transfer-iframe-container .corner-top-right {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            width: 0px;
-            height: 0px;
-            background: rgba(35, 35, 40, 0.7);
-            border-radius: 0 0 0 12px;
-            z-index: 3;
-        }
-        
-        .transfer-iframe-container .corner-bottom-left {
-            position: absolute;
-            bottom: -1px;
-            left: -1px;
-            width: 0px;
-            height: 0px;
-            background: rgba(35, 35, 40, 0.7);
-            border-radius: 0 12px 0 0;
-            z-index: 3;
-        }
-        
-        .transfer-iframe-container .corner-bottom-right {
-            position: absolute;
-            bottom: -1px;
-            right: -1px;
-            width: 0px;
-            height: 0px;
-            background: rgba(35, 35, 40, 0.7);
-            border-radius: 12px 0 0 0;
-            z-index: 3;
-        }
-        
-        .transfer-iframe-mask {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            border-radius: 24px;
-            box-shadow: 
-                inset 0 0 0 0px rgba(35, 35, 40, 0.7),
-                inset 0 0 0 0px rgba(35, 35, 40, 0.7);
         }
 
         .statistics-card {
@@ -1869,6 +1743,19 @@
         </div>
     </div>
 
+    <div class="cart-summary-bar" id="cartSummaryBar" data-modal="cartModal">
+        <div class="cart-summary-bar-inner">
+            <div class="cart-summary-left">
+                <img class="cart-summary-icon" src="https://storage.botpapa.me/files/d05f9f80-cd54-11f0-aa62-f3a4d21b862b.svg" alt="Корзина">
+                <span class="cart-summary-text" id="cartSummaryText">0 товаров</span>
+            </div>
+            <div class="cart-summary-right">
+                <span class="cart-summary-price" id="cartSummaryPrice">0₽</span>
+                <img class="cart-summary-arrow" src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Стрелка">
+            </div>
+        </div>
+    </div>
+
     <div class="page-container" id="mainContent">
         <div class="content-wrapper">
             <div class="buttons-container">
@@ -1903,11 +1790,6 @@
                 <button class="search-button" id="searchButton" data-action="applySearch">
                     <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Поиск">
                 </button>
-                <div class="filter-button cart-button-main" data-modal="cartModal" id="cartButton">
-                    <img src="https://storage.botpapa.me/files/d05f9f80-cd54-11f0-aa62-f3a4d21b862b.svg" alt="Корзина" class="cart-main-icon">
-                    <span class="cart-main-text" id="cartText">0₽</span>
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Стрелка" class="cart-arrow-icon">
-                </div>
             </div>
             
             <div class="filters-row second-row">
@@ -1945,62 +1827,10 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="payment-methods-card">
-                    <div class="bank-card-container" id="bankCardContainer">
-                        <div class="bank-card-row single">
-                            <div class="bank-card-item full-width" id="cardNumberItem">
-                                <div class="bank-card-content">
-                                    <div class="bank-card-icon-left" id="cardIcon">
-                                        <img src="https://storage.botpapa.me/files/812cea30-e401-11f0-b904-772788f215dd.png" alt="Т-Банк">
-                                    </div>
-                                    <div class="bank-card-value" id="cardNumberValue">2200 7019 3499 0208</div>
-                                </div>
-                                <div class="bank-card-icon-right" data-action="copyCardNumber">
-                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Копировать">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bank-card-row double">
-                            <div class="bank-card-item wide" id="bankNameItem" data-action="changeBank">
-                                <div class="bank-card-content">
-                                    <div class="bank-card-value" id="bankNameValue">Т-Банк</div>
-                                </div>
-                                <div class="bank-card-icon-right">
-                                    <img src="https://storage.botpapa.me/files/816f77a0-e3e4-11f0-b904-772788f215dd.png" alt="Выбрать">
-                                </div>
-                            </div>
-                            
-                            <div class="bank-card-item narrow" id="priceItem">
-                                <div class="bank-card-content">
-                                    <div class="bank-card-value" id="priceValue">129₽</div>
-                                </div>
-                                <div class="bank-card-icon-right" data-action="copyPrice">
-                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Копировать">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="transfer-data-card">
-                    <div class="transfer-data-header">
-                        <button class="fill-transfer-btn">Заполнить данные перевода</button>
-                        <div class="transfer-data-controls">
-                            <div class="transfer-info-icon" data-action="info">
-                                <img src="https://storage.botpapa.me/files/407a3690-e416-11f0-b904-772788f215dd.png" alt="Инфо">
-                            </div>
-                            <div class="transfer-info-icon" data-action="support">
-                                <img src="https://storage.botpapa.me/files/52991480-db61-11f0-b904-772788f215dd.png" alt="Поддержка">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="transfer-iframe-container">
-                        <div class="corner-bottom-left"></div>
-                        <div class="corner-bottom-right"></div>
-                        <div class="transfer-iframe-mask"></div>
-                        <iframe class="transfer-iframe" id="paymentIframe" src="https://app.botpapa.me/website/%40PlacedMarketBot/st100" frameborder="0"></iframe>
+                <div class="payment-buttons-row">
+                    <button class="pay-confirm-btn" data-action="paymentConfirmed">Я оплатил</button>
+                    <div class="pay-icon-btn" data-action="paymentIconPlaceholder">
+                        <img src="https://storage.botpapa.me/files/407a3690-e416-11f0-b904-772788f215dd.png" alt="Иконка">
                     </div>
                 </div>
             </div>
@@ -2199,15 +2029,6 @@ function backToPaymentFromSuccess() {
     }, 100);
 }
 
-window.addEventListener('message', function(event) {
-    if (event.data === 'OPEN_SUCCESS_SENT_MODAL') {
-        openSuccessSentModal();
-    }
-    if (event.data && event.data.type === 'BOTPAPA_ACTION' && event.data.action === 'SUCCESS_SENT_TRIGGER') {
-        openSuccessSentModal();
-    }
-});
-
 let currentCollectionFilter = 'all';
 let currentSorting = 'random';
 let currentProduct = null;
@@ -2382,25 +2203,6 @@ if (profileButton) {
     });
 }
 
-const bankIcons = {
-    'Т-Банк': 'https://storage.botpapa.me/files/a8ab1780-e410-11f0-b904-772788f215dd.png',
-    'СберБанк': 'https://storage.botpapa.me/files/afd077d0-e410-11f0-b904-772788f215dd.png',
-    'ВТБ Банк': 'https://storage.botpapa.me/files/d9c80760-e410-11f0-b904-772788f215dd.png',
-    'Ozon Банк': 'https://storage.botpapa.me/files/b6002d80-e410-11f0-b904-772788f215dd.png',
-    'Альфа Банк': 'https://storage.botpapa.me/files/bc382090-e410-11f0-b904-772788f215dd.png'
-};
-
-const banksData = {
-    'Т-Банк': '2200 7019 3499 0208',
-    'СберБанк': '2202 2084 4441 4743',
-    'ВТБ Банк': '2200 2418 6382 9697',
-    'Ozon Банк': '2204 3203 9062 7166',
-    'Альфа Банк': '2200 1529 6836 2817'
-};
-
-let currentBankIndex = 0;
-const bankNames = Object.keys(banksData);
-
 const statisticsData = {
     'all': { stars: '96 573', amount: '124 772₽' },
     'orders': { stars: '96 573', amount: '1 077 📦' }
@@ -2453,40 +2255,31 @@ function showProductUnavailableError() {
     alert('Этот товар сейчас недоступен. Попробуйте выбрать другой товар.');
 }
 
-function updateBankCard() {
-    const cardIcon = document.getElementById('cardIcon');
-    const cardNumberValue = document.getElementById('cardNumberValue');
-    const bankNameValue = document.getElementById('bankNameValue');
-    
-    const currentBankName = bankNames[currentBankIndex];
-    const currentCardNumber = banksData[currentBankName];
-    const currentBankIcon = bankIcons[currentBankName];
-    
-    cardIcon.innerHTML = `<img src="${currentBankIcon}" alt="${currentBankName}">`;
-    cardNumberValue.textContent = currentCardNumber;
-    bankNameValue.textContent = currentBankName;
-}
-
-function changeBank() {
-    triggerVibration();
-    currentBankIndex = (currentBankIndex + 1) % bankNames.length;
-    updateBankCard();
-}
-
-function updatePrice(price) {
-    document.getElementById('priceValue').textContent = `${price}₽`;
+function pluralizeTovar(n) {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod100 >= 11 && mod100 <= 14) return 'товаров';
+    if (mod10 === 1) return 'товар';
+    if (mod10 >= 2 && mod10 <= 4) return 'товара';
+    return 'товаров';
 }
 
 function updateCartTotal() {
-    const cartTextElement = document.getElementById('cartText');
-    if (cartTextElement) {
-        if (cart.length === 0) {
-            cartTextElement.textContent = '0₽';
-        } else {
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            cartTextElement.textContent = `${total}₽`;
-        }
+    const summaryBar = document.getElementById('cartSummaryBar');
+    const summaryText = document.getElementById('cartSummaryText');
+    const summaryPrice = document.getElementById('cartSummaryPrice');
+    
+    if (!summaryBar) return;
+    
+    if (cart.length === 0) {
+        summaryBar.classList.remove('visible');
+        return;
     }
+    
+    summaryBar.classList.add('visible');
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    summaryText.textContent = `${cart.length} ${pluralizeTovar(cart.length)}`;
+    summaryPrice.textContent = `${total}₽`;
 }
 
 function applySearch() {
@@ -2966,17 +2759,14 @@ function handleCartBuy() {
         return;
     }
 
-    let iframeUrl = null;
     let totalPrice = 0;
 
     if (cart.length === 1) {
-        iframeUrl = cart[0].iframe;
         totalPrice = cart[0].price;
         currentProduct = {
             price: totalPrice.toString(),
             name: cart[0].name,
             image: cart[0].image,
-            iframe: iframeUrl,
             nftId: cart[0].nftId || '',
             productId: cart[0].productId,
             uniqueId: cart[0].uniqueId
@@ -2990,13 +2780,11 @@ function handleCartBuy() {
             alert('Такое сочетание товаров нельзя купить вместе.');
             return;
         }
-        iframeUrl = combination.iframe;
         totalPrice = combination.price;
         currentProduct = {
             price: totalPrice.toString(),
             name: sortedCart.map(item => item.name).join(' + '),
             image: sortedCart[0].image,
-            iframe: iframeUrl,
             nftId: '',
             productId: '',
             uniqueId: uniqueIds
@@ -3008,15 +2796,6 @@ function handleCartBuy() {
 
     cartPurchaseMode = true;
     hideModal('cartModal');
-
-    const paymentIframe = document.getElementById('paymentIframe');
-    updatePrice(totalPrice);
-    paymentIframe.classList.remove('loaded');
-    paymentIframe.src = iframeUrl;
-
-    paymentIframe.onload = function() {
-        setTimeout(() => paymentIframe.classList.add('loaded'), 30);
-    };
 
     setTimeout(() => showModal('paymentModal'), 300);
 }
@@ -3147,16 +2926,12 @@ function updateCheckoutOrderModalContent() {
     const isPacksProduct = card && card.getAttribute('data-section') === 'packs';
     const isUnavailable = card && card.getAttribute('data-available') !== 'on';
     
-    let addToCartButton = '';
-    if (!isPacksProduct) {
-        addToCartButton = `<button class="checkout-add-to-cart-btn ${isInCart ? 'added' : ''}" data-action="checkoutAddToCart" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
-                                ${isInCart ? 'Убрать' : 'В корзину'}
-                          </button>`;
-    } else {
-        addToCartButton = `<button class="checkout-add-to-cart-btn" data-action="checkoutAddToCartPacks" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
-                                В корзину
-                          </button>`;
-    }
+    const cartIconSrc = 'https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg';
+    const cartAddedIconSrc = 'https://storage.botpapa.me/files/4da523d0-cd63-11f0-aa62-f3a4d21b862b.png';
+    
+    const cartIconButton = `<div class="checkout-cart-icon-btn ${isInCart ? 'in-cart' : ''}" data-action="${isPacksProduct ? 'checkoutAddToCartPacks' : 'checkoutAddToCart'}" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
+                                <img src="${isInCart ? cartAddedIconSrc : cartIconSrc}" alt="Корзина">
+                              </div>`;
     
     const commission = 0;
     
@@ -3184,10 +2959,10 @@ function updateCheckoutOrderModalContent() {
             </div>
         </div>
         <div class="checkout-buttons-row">
-            ${addToCartButton}
             <button class="checkout-buy-btn" data-action="checkoutBuy" data-price="${price}" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}" data-section="${isPacksProduct ? 'packs' : 'store'}">
                 Купить ${price}₽
             </button>
+            ${cartIconButton}
         </div>
     `;
     
@@ -3215,15 +2990,6 @@ function checkoutBuy(price, name, nftId, uniqueId, section) {
     
     cartPurchaseMode = false;
     hideModal('checkoutOrderModal');
-    
-    const paymentIframe = document.getElementById('paymentIframe');
-    updatePrice(price);
-    paymentIframe.classList.remove('loaded');
-    paymentIframe.src = currentProduct.iframe;
-    
-    paymentIframe.onload = function() {
-        setTimeout(() => paymentIframe.classList.add('loaded'), 30);
-    };
     
     setTimeout(() => showModal('paymentModal'), 300);
 }
@@ -3316,10 +3082,6 @@ function showModal(modalId) {
     modal.classList.add('active');
     document.body.classList.add('modal-open');
     activeModal = modal;
-    
-    if (modalId === 'paymentModal' && currentProduct) {
-        updatePrice(currentProduct.price);
-    }
 }
 
 function hideModal(modalId) {
@@ -3358,7 +3120,6 @@ function saveState() {
     localStorage.setItem('storeSorting', storeSorting);
     localStorage.setItem('packsCollectionFilter', packsCollectionFilter);
     localStorage.setItem('packsSorting', packsSorting);
-    localStorage.setItem('bankIndex', currentBankIndex.toString());
     localStorage.setItem('menuTab', currentMenuTab);
 }
 
@@ -3421,11 +3182,6 @@ function restoreUI() {
         setActiveMenuItem(0);
     }
     
-    const savedBankIndex = localStorage.getItem('bankIndex');
-    if (savedBankIndex) {
-        currentBankIndex = parseInt(savedBankIndex);
-        updateBankCard();
-    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -3438,7 +3194,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     moveStatisticsSlider(0);
-    updateBankCard();
     updateCartTotal();
     
     document.getElementById('collectionsText').textContent = 'Коллекция';
@@ -3553,37 +3308,17 @@ document.addEventListener('click', function(e) {
         case 'backToPayment':
             backToPaymentFromSuccess();
             break;
-        case 'copyCardNumber':
-            const cardNumber = document.getElementById('cardNumberValue').textContent;
-            copyToClipboard(cardNumber.replace(/\s/g, ''), target.querySelector('img'));
-            break;
-        case 'changeBank':
-            changeBank();
-            saveState();
-            break;
-        case 'copyPrice':
-            const price = document.getElementById('priceValue').textContent;
-            copyToClipboard(price, target.querySelector('img'));
-            break;
         case 'selectCollection':
             selectCollection(target.dataset.collection);
             break;
         case 'selectSorting':
             selectSorting(target.dataset.sorting);
             break;
-        case 'support':
-            openSupportLink();
+        case 'paymentConfirmed':
+            // Пока без функционала
             break;
-        case 'info':
-            if (currentMenuTab === 'packs') {
-                window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
-            } else {
-                if (currentProduct && currentProduct.uniqueId && document.querySelector(`.card[data-unique-id="${currentProduct.uniqueId}"]`)?.getAttribute('data-section') === 'packs') {
-                    window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
-                } else {
-                    window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
-                }
-            }
+        case 'paymentIconPlaceholder':
+            // Заглушка
             break;
         case 'openFaq':
             window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
