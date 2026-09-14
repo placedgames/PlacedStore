@@ -1,0 +1,4005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        @supports (-webkit-touch-callout: none) {
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+        
+        @supports not (-webkit-touch-callout: none) {
+            * {
+                outline: none !important;
+                -webkit-tap-highlight-color: transparent !important;
+                -webkit-focus-ring-color: transparent !important;
+            }
+            
+            .card, button, .modal-content, .filter-item, .search-filter {
+                will-change: transform;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+            
+            :focus {
+                outline: none !important;
+            }
+            
+            button:focus, 
+            button:active,
+            .card:focus,
+            .card:active,
+            .filter-item:focus,
+            .filter-item:active,
+            .modal-header-left:focus,
+            .modal-header-left:active,
+            .modal-header-right:focus,
+            .modal-header-right:active {
+                outline: none !important;
+                -webkit-tap-highlight-color: transparent !important;
+            }
+            
+            .modal-content {
+                will-change: transform;
+                transform: translateZ(0);
+            }
+            
+            .menu-slider {
+                will-change: left;
+            }
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            touch-action: pan-y;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background-color: #0a0a0c;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+            -webkit-user-scalable: no;
+            user-scalable: no;
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+        
+        body.modal-open {
+            overflow: hidden !important;
+            position: fixed !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        .bank-card-value,
+        #priceValue,
+        .search-input {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+        
+        @supports (-webkit-touch-callout: none) {
+            body {
+                height: -webkit-fill-available;
+            }
+            
+            .modal-overlay {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                z-index: 2147483647 !important;
+            }
+        }
+        
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+        
+        .liquid-glass,
+        .star-button, .buy-ton-button, .search-filter, .filter-button, 
+        .filter-item, .price-button, .cart-button, .payment-methods-card,
+        .bank-card-item, .transfer-data-card, .transfer-data-controls,
+        .selection-card, .statistics-card, .cart-item, .button-card,
+        .full-width-button, .checkout-order-close-btn, .checkout-order-buy-btn,
+        .modal-content, .statistics-island, .fill-transfer-btn, .card,
+        .header-image, .search-button, .modal-header-left, .modal-header-center, 
+        .modal-header-right, .checkout-product-card, .checkout-add-to-cart-btn, 
+        .checkout-buy-btn, .transfer-iframe-container, .clear-all-btn, .cart-buy-btn,
+        .faq-button, .contact-button, .warning-card, .reviews-button {
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .star-button::before, .buy-ton-button::before, .search-filter::before,
+        .filter-button::before, .filter-item::before, .price-button::before,
+        .cart-button::before, .payment-methods-card::before, .bank-card-item::before,
+        .transfer-data-card::before, .transfer-data-controls::before,
+        .selection-card::before, .statistics-card::before, .cart-item::before,
+        .button-card::before, .full-width-button::before, .modal-content::before,
+        .statistics-island::before, .fill-transfer-btn::before, .card::before,
+        .header-image::before, .search-button::before, .modal-header-left::before,
+        .modal-header-center::before, .modal-header-right::before,
+        .checkout-product-card::before, .checkout-add-to-cart-btn::before, 
+        .checkout-buy-btn::before, .transfer-iframe-container::before,
+        .clear-all-btn::before, .cart-buy-btn::before,
+        .faq-button::before, .contact-button::before, .warning-card::before,
+        .reviews-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.08) 20%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.03) 80%,
+                rgba(255, 255, 255, 0.1) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .transfer-iframe-container::before {
+            z-index: 4;
+            border-radius: 24px;
+        }
+        
+        .page-container {
+            width: 100%;
+            padding: 0px;
+            min-height: 100%;
+        }
+        
+        .content-wrapper {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0 0px;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            margin-top: -8px;
+            padding: 0;
+            width: 100%;
+        }
+        
+        .star-button {
+            background-color: rgba(35, 35, 41, 0.7);
+            border: none;
+            border-radius: 50px;
+            padding: 5px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            height: 36px;
+        }
+        
+        .star-button img {
+            width: 17px;
+            height: 17px;
+        }
+        
+        .star-number {
+            letter-spacing: 0.5px;
+        }
+        
+        .right-buttons {
+            display: flex;
+            gap: 0px;
+        }
+        
+        .buy-ton-button {
+            background-color: rgba(0, 122, 255, 0.18);
+            border: none;
+            border-radius: 50px;
+            padding: 5px 8px 5px 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .buy-ton-left-icon {
+            width: 21px;
+            height: 21px;
+            flex-shrink: 0;
+        }
+        
+        .buy-ton-left-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .buy-ton-right-icon {
+            width: 21px;
+            height: 31px;
+            flex-shrink: 0;
+        }
+        
+        .buy-ton-right-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .header-image {
+            width: 100%;
+            border-radius: 29px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            cursor: pointer;
+            position: relative;
+            background-color: rgba(35, 35, 41, 0.3);
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 29px;
+        }
+        
+        .filters-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            width: 100%;
+            align-items: center;
+        }
+        
+        .filters-row.second-row {
+            margin-bottom: 13px;
+        }
+        
+        .search-filter {
+            flex: 1;
+            background-color: rgba(36, 36, 43, 0.65);
+            border-radius: 24px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px 0 14px;
+            gap: 8px;
+        }
+        
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+        
+        .search-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 17px;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(136, 136, 136, 0.8);
+            opacity: 1;
+            font-size: 17px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+        }
+        
+        .search-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(36, 36, 43, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            border: none;
+        }
+        
+        .search-button img {
+            width: 23px;
+            height: 23px;
+            opacity: 0.5;
+            filter: brightness(0) invert(1);
+        }
+        
+        .filter-button.cart-button-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(36, 36, 43, 0.65);
+            border-radius: 24px;
+            padding: 0 8px 0 12px;
+            height: 45px;
+            cursor: pointer;
+            gap: 4px;
+            min-width: 80px;
+        }
+        
+        .filter-button.cart-button-main.active {
+            background-color: rgba(36, 36, 43, 0.65);
+        }
+        
+        .cart-main-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.67;
+            filter: brightness(0) invert(1);
+        }
+        
+        .cart-main-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 0 0px 0 4px;
+        }
+        
+        .cart-arrow-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+            filter: brightness(0) invert(1);
+            transform: rotate(-90deg);
+        }
+        
+        .filter-button.reset-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(36, 36, 43, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .filter-button.reset-button.active {
+            background-color: rgba(49, 49, 55, 0.8);
+        }
+        
+        .filter-button.reset-button img {
+            width: 23px;
+            height: 23px;
+            opacity: 0.5;
+            filter: brightness(0) invert(1);
+        }
+        
+        .filter-button.reset-button.active img {
+            opacity: 1;
+        }
+        
+        .filter-item {
+            flex: 1;
+            background-color: rgba(36, 36, 43, 0.65);
+            border-radius: 24px;
+            padding: 0 10px 0 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 45px;
+        }
+        
+        .filter-item span {
+            color: white;
+            font-size: 17px;
+            font-weight: 430;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .filter-arrow {
+            width: 18px;
+            height: 18px;
+            opacity: 0.5;
+            flex-shrink: 0;
+        }
+        
+        .filter-arrow img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+            padding: 0;
+            width: 100%;
+            margin-top: 0px;
+            margin-bottom: 91px;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background-color: rgba(35, 35, 42, 0.65);
+            border-radius: 43px 43px 28px 28px;
+            padding: 9px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card-image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 35px;
+        }
+        
+        .card-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 35px;
+            display: flex;
+        }
+        
+        .card-image-slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-image-slide {
+            flex: 0 0 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-image-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+        
+        .card-content {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 7px;
+        }
+        
+        .card-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 3px 0;
+            line-height: 1.3;
+            text-align: left;
+            width: 100%;
+            padding: 0 5px;
+        }
+        
+        .card-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 7px;
+            padding: 0;
+            gap: 6px;
+        }
+        
+        .price-button {
+            background-color: rgba(0, 149, 255, 0.94);
+            border: none;
+            border-radius: 25px;
+            padding: 6px 13px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            height: 37px;
+            min-width: 0;
+        }
+        
+        .cart-button {
+            border: none;
+            border-radius: 50%;
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            background-color: rgba(52, 52, 57, 0.7);
+        }
+        
+        .cart-icon {
+            width: 19px;
+            height: 19px;
+            opacity: 0.9;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .cart-added-icon {
+            width: 19px;
+            height: 19px;
+            opacity: 0.9;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            z-index: 2147483647;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        
+        .modal-content {
+            background-color: rgba(22, 22, 26, 0.9);
+            width: calc(100% - 16px);
+            max-height: 85vh;
+            padding: 0;
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            border-radius: 50px 50px 49px 49px !important;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) !important;
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 21px 0 21px;
+            width: 100%;
+        }
+        
+        .modal-header-left {
+            width: 47px;
+            height: 47px;
+            border-radius: 50%;
+            background-color: rgba(36, 36, 41, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .modal-header-left.payment-header {
+            opacity: 0.7;
+        }
+        
+        .modal-header-left img {
+            width: 27px;
+            height: 27px;
+            filter: brightness(0) invert(1);
+            opacity: 0.6;
+        }
+        
+        .modal-header-left.payment-header img {
+            opacity: 0.8;
+        }
+        
+        .modal-header-center {
+            flex: 1;
+            height: 47px;
+            background-color: rgba(36, 36, 41, 0.65);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            color: white;
+            font-size: 19px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .modal-header-right {
+            width: 47px;
+            height: 47px;
+            border-radius: 50%;
+            background-color: rgba(36, 36, 41, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .modal-header-right img {
+            width: 33px;
+            height: 33px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+        
+        .modal-body {
+            padding: 14px !important;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .modal-body > * {
+            margin-bottom: 0;
+        }
+        
+        .modal-body .payment-methods-card {
+            margin-bottom: 14px;
+        }
+        
+        .modal-body .transfer-data-card {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        .modal-body .checkout-product-card {
+            margin-bottom: 0px;
+        }
+        
+        .modal-body .checkout-buttons-row {
+            margin-top: 14px;
+            margin-bottom: 0;
+        }
+        
+        .selection-card {
+            background-color: rgba(37, 37, 41, 0.7);
+            border-radius: 36px;
+            padding: 0;
+            width: 100%;
+            max-height: 178px;
+            overflow-y: auto;
+        }
+
+        .selection-card::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .selection-card::-webkit-scrollbar-track {
+            background: rgba(26, 26, 28, 0.5);
+            border-radius: 3px;
+        }
+
+        .selection-card::-webkit-scrollbar-thumb {
+            background: rgba(68, 68, 68, 0.7);
+            border-radius: 3px;
+        }
+
+        .selection-item {
+            display: flex;
+            align-items: center;
+            padding: 17px;
+            border-bottom: 1px solid rgba(42, 42, 44, 0.5);
+            cursor: pointer;
+        }
+
+        .selection-item:last-child {
+            border-bottom: none;
+        }
+
+        .selection-icon {
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            border: 2px solid rgba(68, 68, 68, 0.8);
+            margin-right: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .selection-icon.selected {
+            background-color: #007AFF;
+            border-color: #007AFF;
+        }
+
+        .selection-icon.selected::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .selection-text {
+            color: white;
+            font-size: 17px;
+            font-weight: 430;
+            flex: 1;
+        }
+
+        .payment-methods-card {
+            background-color: rgba(35, 35, 40, 0.7);
+            border-radius: 39px;
+            padding: 16px;
+            width: 100%;
+        }
+
+        .bank-card-container {
+            background-color: transparent;
+            border-radius: 27px;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .bank-card-row {
+            display: flex;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .bank-card-row.single {
+            height: 56px;
+        }
+
+        .bank-card-row.double {
+            height: 56px;
+        }
+
+        .bank-card-item {
+            background-color: rgba(42, 42, 47, 0.7);
+            border-radius: 27px;
+            padding: 0 15px 0 19px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .bank-card-item.full-width {
+            flex: 1;
+        }
+
+        .bank-card-item.wide {
+            flex: 2.2;
+        }
+
+        .bank-card-item.narrow {
+            flex: 1.5;
+        }
+
+        .bank-card-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            min-height: 29px;
+            padding-right: 11px;
+        }
+
+        .bank-card-icon-left {
+            width: 29px;
+            height: 29px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 13px;
+            flex-shrink: 0;
+        }
+
+        .bank-card-icon-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .bank-card-value {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            word-break: break-all;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+
+        .bank-card-icon-right {
+            width: 21px;
+            height: 21px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.42;
+            flex-shrink: 0;
+        }
+
+        .bank-card-icon-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .transfer-data-card {
+            background-color: rgba(35, 35, 40, 0.7);
+            border-radius: 37px 37px 41px 41px;
+            width: 100%;
+            position: relative;
+            height: auto;
+            min-height: 216px;
+            max-height: calc(65vh - 200px);
+            overflow: hidden;
+            padding: 0;
+            border: none;
+        }
+
+        .transfer-data-header {
+            position: absolute;
+            top: 17px;
+            left: 17px;
+            right: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .fill-transfer-btn {
+            background-color: rgba(51, 51, 57, 0.8);
+            border-radius: 25px;
+            padding: 11px 17px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            max-width: 70%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .transfer-data-controls {
+            background-color: rgba(51, 51, 57, 0.8);
+            border-radius: 27px;
+            padding: 13px 13px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            height: 38px;
+            min-width: 34px;
+        }
+
+        .transfer-info-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+        }
+
+        .transfer-info-icon img {
+            filter: brightness(0) invert(1);
+        }
+
+        .transfer-iframe-container {
+            width: 100%;
+            height: 216px;
+            border-radius: 42px 42px 46px 46px;
+            overflow: hidden;
+            background-color: rgba(35, 35, 40, 0.7);
+            position: relative;
+            isolation: isolate;
+        }
+        
+        .transfer-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: white;
+            border-radius: 10px;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            opacity: 0;
+            transition: opacity 0.01s ease;
+        }
+        
+        .transfer-iframe.loaded {
+            opacity: 1;
+        }
+        
+        .transfer-iframe-container::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 0px;
+            height: 0px;
+            background: rgba(35, 35, 40, 0.7);
+            border-radius: 0 0 12px 0;
+            z-index: 3;
+        }
+        
+        .transfer-iframe-container .corner-top-right {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 0px;
+            height: 0px;
+            background: rgba(35, 35, 40, 0.7);
+            border-radius: 0 0 0 12px;
+            z-index: 3;
+        }
+        
+        .transfer-iframe-container .corner-bottom-left {
+            position: absolute;
+            bottom: -1px;
+            left: -1px;
+            width: 0px;
+            height: 0px;
+            background: rgba(35, 35, 40, 0.7);
+            border-radius: 0 12px 0 0;
+            z-index: 3;
+        }
+        
+        .transfer-iframe-container .corner-bottom-right {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 0px;
+            height: 0px;
+            background: rgba(35, 35, 40, 0.7);
+            border-radius: 12px 0 0 0;
+            z-index: 3;
+        }
+        
+        .transfer-iframe-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            border-radius: 24px;
+            box-shadow: 
+                inset 0 0 0 0px rgba(35, 35, 40, 0.7),
+                inset 0 0 0 0px rgba(35, 35, 40, 0.7);
+        }
+
+        .statistics-card {
+            background-color: rgba(35, 35, 40, 0.67);
+            border-radius: 39px;
+            padding: 16px;
+            width: 100%;
+        }
+
+        .statistics-slider-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            background-color: rgba(25, 25, 29, 0.7);
+            border-radius: 34px;
+            margin: 0 0 17px 0;
+            overflow: hidden;
+        }
+        
+        .statistics-slider-container {
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .statistics-slider-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 34px;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.08) 20%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.03) 80%,
+                rgba(255, 255, 255, 0.1) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .statistics-slider-line {
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+        }
+
+        .statistics-slider-option {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 430;
+            font-size: 17px;
+            color: #888;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .statistics-slider-option.active {
+            color: #fff;
+        }
+
+        .statistics-slider-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            background-color: rgba(48, 48, 54, 0.5);
+            border-radius: 24px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .modal-overlay:not(.active) .modal-content * {
+            transition: none !important;
+        }
+
+        .statistics-islands-container {
+            display: flex;
+            gap: 13px;
+            width: 100%;
+        }
+
+        .statistics-island {
+            flex: 1;
+            background-color: rgba(48, 48, 54, 0.3);
+            border-radius: 28px;
+            padding: 17px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 81px;
+        }
+
+        .statistics-island-content {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .statistics-icon {
+            width: 19px;
+            height: 19px;
+            flex-shrink: 0;
+            margin-bottom: 1px;
+            position: relative;
+            top: 1px;
+        }
+
+        .statistics-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .statistics-value {
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .statistics-amount {
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .statistics-buttons-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-top: 14px;
+            padding: 1px 4px 4px 4px;
+            display: none;
+        }
+
+        .reviews-button {
+            display: none;
+            flex: 1;
+            background-color: rgba(47, 47, 53, 0.74);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .contact-button {
+            display: none;
+            flex: 1;
+            background-color: rgba(0, 149, 255, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 0px;
+            max-height: none;
+            overflow-y: visible;
+        }
+        
+        .cart-item {
+            background-color: rgba(37, 37, 42, 0.7);
+            border-radius: 32px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 8px;
+            position: relative;
+        }
+        
+        .cart-item-row {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .cart-item-image {
+            width: 67px;
+            height: 67px;
+            border-radius: 22px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2px;
+        }
+        
+        .cart-item-name-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .cart-item-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding-top: 8px;
+        }
+        
+        .cart-item-price {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding-top: 8px;
+        }
+        
+        .cart-item-collection-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        
+        .cart-item-collection {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .cart-item-price-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .cart-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            margin: 7px 9px 4px 4px;
+        }
+        
+        .cart-commission-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .cart-commission-label {
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            padding-left: 3px;
+        }
+        
+        .cart-commission-value {
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            padding-right: 3px;
+        }
+        
+        .cart-buttons-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-top: 14px;
+            padding: 1px 5px 4px 5px;
+        }
+        
+        .clear-all-btn {
+            flex: 1;
+            background-color: rgba(48, 48, 52, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .cart-buy-btn {
+            flex: 1;
+            background-color: rgba(0, 149, 255, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .checkout-product-card {
+            background-color: rgba(35, 35, 40, 0.7);
+            border-radius: 32px;
+            padding: 14px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checkout-product-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .checkout-product-image {
+            width: 67px;
+            height: 67px;
+            border-radius: 22px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .checkout-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .checkout-product-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2px;
+        }
+
+        .checkout-product-name-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .checkout-product-name {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding-top: 8px;
+        }
+
+        .checkout-product-price {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding-top:  8px;
+        }
+
+        .checkout-product-collection-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .checkout-product-collection {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .checkout-product-price-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .checkout-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            margin: 7px 9px 4px 4px;
+        }
+
+        .checkout-commission-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .checkout-commission-label {
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            padding-left: 3px;
+        }
+
+        .checkout-commission-value {
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            padding-right: 3px;
+        }
+
+        .checkout-buttons-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-top: 14px;
+            padding: 1px 5px 4px 5px;
+        }
+
+        .checkout-add-to-cart-btn {
+            flex: 1;
+            background-color: rgba(48, 48, 52, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .checkout-add-to-cart-btn.added {
+            color: #ffffff;
+            background-color: rgba(48, 48, 52, 0.8);
+        }
+
+        .checkout-buy-btn {
+            flex: 1;
+            background-color: rgba(0, 149, 255, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .success-sent-card {
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            background-color: rgba(35, 35, 40, 0.7);
+            border-radius: 34px;
+            padding: 16px 12px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .success-sent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 34px;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.08) 20%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.03) 80%,
+                rgba(255, 255, 255, 0.1) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .success-sent-card h2 {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0 0 8px 0;
+        }
+
+        .success-sent-card p {
+            color: #aaa;
+            font-size: 16px;
+            text-align: center;
+            padding: 0 6px;
+            line-height: 1.5;
+         }
+
+        .success-sent-buttons {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            padding: 1px 5px 4px 5px;
+            margin-top: 4px;
+        }
+
+        .faq-button {
+            flex: 1;
+            background-color: rgba(48, 48, 52, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .contact-button {
+            flex: 1;
+            background-color: rgba(0, 149, 255, 0.8);
+            border: none;
+            border-radius: 32px;
+            height: 55px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .no-results {
+            grid-column: span 2;
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 16px;
+            background-color: rgba(26, 26, 28, 0.5);
+            border-radius: 27px;
+        }
+        
+        .no-select {
+            -webkit-touch-callout: default;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .menu-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            max-width: 400px;
+            padding: 0 20px;
+            z-index: 10000;
+        }
+
+        .bottom-menu {
+            flex: 1;
+            height: 67px;
+            border-radius: 34px;
+            overflow: hidden;
+            background: rgba(34,34,40,0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                0 8px 24px rgba(0,0,0,0.65);
+            position: relative;
+        }
+
+        .menu-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 6px);
+            height: calc(100% - 6px);
+            background-color: rgba(248, 248, 255, 0.03);
+            border-radius: 30px;
+            border: 1px solid rgba(248, 248, 255, 0.05);
+            pointer-events: none;
+            transition: left 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+        }
+
+        .menu-items {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0px;
+            flex: 1;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            height: 100%;
+            z-index: 2;
+            transition: none;
+        }
+
+        .menu-item span {
+            color: inherit;
+        }
+
+        .menu-icon {
+            width: 26px;
+            height: 26px;
+            margin-top: 3px;
+            transition: none;
+            opacity: 0.6;
+            filter: brightness(0) invert(1);
+        }
+
+        .menu-item.market-active .menu-icon,
+        .menu-item.bundle-active .menu-icon {
+            opacity: 1 !important;
+            filter: brightness(0) invert(46%) sepia(95%) saturate(2476%) hue-rotate(189deg) brightness(104%) contrast(101%) !important;
+        }
+
+        .menu-item.market-active,
+        .menu-item.bundle-active {
+            color: #0093FF !important;
+        }
+
+        .menu-item:not(.market-active):not(.bundle-active) {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .menu-item:not(.market-active):not(.bundle-active) .menu-icon {
+            opacity: 0.6;
+            filter: brightness(0) invert(1);
+        }
+
+        .separate-item {
+            margin-left: 34px;
+            width: 67px;
+            height: 67px;
+            border-radius: 50%;
+            background: rgba(34,34,40,0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                0 8px 24px rgba(0,0,0,0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-avatar {
+            width: 57px;
+            height: 57px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-items.blocked .menu-item {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="no-select">
+    <div class="menu-container">
+        <nav class="bottom-menu">
+            <div class="menu-items" id="menuItems">
+                <div class="menu-slider" id="menuSlider"></div>
+                <div class="menu-item market-active" data-index="0" id="marketItem">
+                    <img class="menu-icon" src="https://storage.botpapa.me/files/39160a70-3987-11f1-bef9-f1ec7a2c6e45.png">
+                    <span>Store</span>
+                </div>
+                <div class="menu-item" data-index="1" id="bundleItem">
+                    <img class="menu-icon" src="https://storage.botpapa.me/files/29485700-0c5b-11f1-b904-772788f215dd.png">
+                    <span>Packs</span>
+                </div>
+            </div>
+        </nav>
+        <div class="separate-item" id="profileButton">
+            <img class="profile-avatar" src="https://storage.botpapa.me/files/fddb61d0-3986-11f1-bef9-f1ec7a2c6e45.jpeg">
+        </div>
+    </div>
+
+    <div class="page-container" id="mainContent">
+        <div class="content-wrapper">
+            <div class="buttons-container">
+                <button class="star-button" data-modal="statisticsModal" id="statisticsButton">
+                    <img src="https://storage.botpapa.me/files/d8b72ef0-a0f9-11f0-b4a0-d13431a40d5b.png" alt="Star Icon">
+                    <span class="star-number">96 573</span>
+                </button>
+                <div class="right-buttons">
+                    <button class="buy-ton-button" id="buyTonButton">
+                        <div class="buy-ton-left-icon">
+                            <img src="https://storage.botpapa.me/files/45de9ba0-d370-11f0-99ce-adc3d9f181f8.png" alt="TON Icon">
+                        </div>
+                        0 RUB
+                        <div class="buy-ton-right-icon">
+                            <img src="https://storage.botpapa.me/files/1d61ec40-d370-11f0-99ce-adc3d9f181f8.png" alt="Arrow Icon">
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-image" onclick="window.open('https://t.me/PlacedCommunity', '_blank')">
+    <img src="https://storage.botpapa.me/files/b804c7b0-0c3f-11f1-b904-772788f215dd.jpeg" alt="Header Image">
+</div>
+            
+            <div class="filters-row">
+                <div class="search-filter">
+                    <div class="search-icon">
+                        <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Search">
+                    </div>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search Products" autocomplete="off">
+                </div>
+                <button class="search-button" id="searchButton" data-action="applySearch">
+                    <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Search">
+                </button>
+                <div class="filter-button cart-button-main" data-modal="cartModal" id="cartButton">
+                    <img src="https://storage.botpapa.me/files/d05f9f80-cd54-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-main-icon">
+                    <span class="cart-main-text" id="cartText">0₽</span>
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Arrow" class="cart-arrow-icon">
+                </div>
+            </div>
+            
+            <div class="filters-row second-row">
+                <div class="filter-button reset-button" id="resetFiltersButton" data-action="resetFilters">
+                    <img src="https://img.icons8.com/sf-black-filled/64/filter.png" alt="Reset">
+                </div>
+                <div class="filter-item wide" data-modal="collectionsModal" id="collectionsFilter">
+    <span id="collectionsText">Collection</span>
+    <div class="filter-arrow">
+        <img src="https://storage.botpapa.me/files/93183790-ccff-11f0-aa62-f3a4d21b862b.png" alt="Arrow">
+    </div>
+                </div>
+                <div class="filter-item wide" data-modal="sortingModal" id="sortingFilter">
+                    <span id="sortingText">Selection</span>
+                    <div class="filter-arrow">
+                        <img src="https://storage.botpapa.me/files/93183790-ccff-11f0-aa62-f3a4d21b862b.png" alt="Arrow">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cards-grid" id="cardsContainer">
+                <!-- Store Products -->
+                <div class="card" data-category="all" data-subcategory="gifts" data-order="1" data-price="20" data-name="13 Stars" data-image="https://storage.botpapa.me/files/bda806a0-262f-11f1-bef9-f1ec7a2c6e45.jpeg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st13n" data-stat-icon="https://storage.botpapa.me/files/3622b940-c492-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470372" data-available="on" data-unique-id="stars_13" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/bda806a0-262f-11f1-bef9-f1ec7a2c6e45.jpeg" alt="13 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">13 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="20" data-card-name="13 Stars" data-card-image="https://storage.botpapa.me/files/bda806a0-262f-11f1-bef9-f1ec7a2c6e45.jpeg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st13n" data-card-nft-id="" data-card-product-id="92470372">20₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="gifts" data-order="2" data-price="34" data-name="21 Stars" data-image="https://storage.botpapa.me/files/73481e20-c161-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st21n" data-stat-icon="https://storage.botpapa.me/files/42fb9a60-c492-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470373" data-available="on" data-unique-id="stars_21" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/73481e20-c161-11f0-b4a0-d13431a40d5b.jpg" alt="21 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">21 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="34" data-card-name="21 Stars" data-card-image="https://storage.botpapa.me/files/73481e20-c161-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st21n" data-card-nft-id="" data-card-product-id="92470373">34₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="gifts" data-order="3" data-price="66" data-name="43 Stars" data-image="https://storage.botpapa.me/files/c4c7c1a0-262f-11f1-bef9-f1ec7a2c6e45.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st43n" data-stat-icon="https://storage.botpapa.me/files/d3caca30-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470374" data-available="on" data-unique-id="stars_43" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/c4c7c1a0-262f-11f1-bef9-f1ec7a2c6e45.png" alt="43 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">43 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="66" data-card-name="43 Stars" data-card-image="https://storage.botpapa.me/files/c4c7c1a0-262f-11f1-bef9-f1ec7a2c6e45.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st43n" data-card-nft-id="" data-card-product-id="92470374">66₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="gifts" data-order="4" data-price="129" data-name="85 Stars" data-image="https://storage.botpapa.me/files/9cf74b30-0c2d-11f1-b904-772788f215dd.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st85n" data-stat-icon="https://storage.botpapa.me/files/fb446170-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470375" data-available="on" data-unique-id="stars_85" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1335b880-0c2f-11f1-b904-772788f215dd.jpeg" alt="85 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">85 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="129" data-card-name="85 Stars" data-card-image="https://storage.botpapa.me/files/9cf74b30-0c2d-11f1-b904-772788f215dd.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st85n" data-card-nft-id="" data-card-product-id="92470375">129₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="5" data-price="135" data-name="100 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st100n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470362" data-available="on" data-unique-id="stars_100" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="100 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">100 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="135" data-card-name="100 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st100n" data-card-nft-id="" data-card-product-id="92470362">135₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="6" data-price="189" data-name="150 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st150n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470363" data-available="on" data-unique-id="stars_150" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="150 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">150 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="189" data-card-name="150 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st150n" data-card-nft-id="" data-card-product-id="92470363">189₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="7" data-price="315" data-name="250 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st250n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470364" data-available="on" data-unique-id="stars_250" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="250 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">250 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="315" data-card-name="250 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st250n" data-card-nft-id="" data-card-product-id="92470364">315₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="8" data-price="439" data-name="350 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st350n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470365" data-available="on" data-unique-id="stars_350" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="350 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">350 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="439" data-card-name="350 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st350n" data-card-nft-id="" data-card-product-id="92470365">439₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="9" data-price="625" data-name="500 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st500n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470366" data-available="on" data-unique-id="stars_500" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="500 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">500 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="625" data-card-name="500 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st500n" data-card-nft-id="" data-card-product-id="92470366">625₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="10" data-price="929" data-name="750 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st750n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470367" data-available="on" data-unique-id="stars_750" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="750 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">750 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="929" data-card-name="750 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st750n" data-card-nft-id="" data-card-product-id="92470367">929₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="11" data-price="1235" data-name="1000 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1000n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470368" data-available="on" data-unique-id="stars_1000" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="1000 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">1000 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="1235" data-card-name="1000 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1000n" data-card-nft-id="" data-card-product-id="92470368">1235₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="12" data-price="1839" data-name="1500 Stars" data-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1500n" data-stat-icon="https://storage.botpapa.me/files/695c6410-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470369" data-available="on" data-unique-id="stars_1500" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" alt="1500 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">1500 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="1839" data-card-name="1500 Stars" data-card-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1500n" data-card-nft-id="" data-card-product-id="92470369">1839₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="13" data-price="3065" data-name="2500 Stars" data-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st2500n" data-stat-icon="https://storage.botpapa.me/files/7e9c2630-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470370" data-available="on" data-unique-id="stars_2500" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" alt="2500 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">2500 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="3065" data-card-name="2500 Stars" data-card-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st2500n" data-card-nft-id="" data-card-product-id="92470370">3065₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="all" data-subcategory="stars" data-order="14" data-price="6129" data-name="5000 Stars" data-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st5000n" data-stat-icon="https://storage.botpapa.me/files/7e9c2630-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470371" data-available="on" data-unique-id="stars_5000" data-section="store">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" alt="5000 Stars">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">5000 Stars</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="6129" data-card-name="5000 Stars" data-card-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st5000n" data-card-nft-id="" data-card-product-id="92470371">6129₽</button>
+                            <button class="cart-button" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packs Products -->
+                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="15" data-price="289" data-name="1 Month" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr1m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_1m" data-available="off" data-unique-id="premium_1m" data-section="packs" data-collection-text="Telegram Premium">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="1 Month">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">1 Month</div>
+                        <div class="card-buttons">
+                            <button class="price-button disabled" data-modal="checkoutOrderModal" data-card-price="289" data-card-name="1 Month" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr1m" data-card-nft-id="" data-card-product-id="premium_1m" data-card-collection="Telegram Premium">289₽</button>
+                            <button class="cart-button disabled" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="16" data-price="869" data-name="3 Months" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr3m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_3m" data-available="on" data-unique-id="premium_3m" data-section="packs" data-collection-text="Telegram Premium">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="3 Months">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">3 Months</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="869" data-card-name="3 Months" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr3m" data-card-nft-id="" data-card-product-id="premium_3m" data-card-collection="Telegram Premium">869₽</button>
+                            <button class="cart-button disabled" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="17" data-price="1189" data-name="6 Months" data-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr6m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_6m" data-available="on" data-unique-id="premium_6m" data-section="packs" data-collection-text="Telegram Premium">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" alt="6 Months">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">6 Months</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="1189" data-card-name="6 Months" data-card-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr6m" data-card-nft-id="" data-card-product-id="premium_6m" data-card-collection="Telegram Premium">1189₽</button>
+                            <button class="cart-button disabled" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="18" data-price="2099" data-name="12 Months" data-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr12m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_12m" data-available="on" data-unique-id="premium_12m" data-section="packs" data-collection-text="Telegram Premium">
+                    <div class="card-image-container">
+                        <div class="card-image-wrapper">
+                            <div class="card-image-slider">
+                                <div class="card-image-slide">
+                                    <img src="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" alt="12 Months">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">12 Months</div>
+                        <div class="card-buttons">
+                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="2099" data-card-name="12 Months" data-card-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr12m" data-card-nft-id="" data-card-product-id="premium_12m" data-card-collection="Telegram Premium">2099₽</button>
+                            <button class="cart-button disabled" data-action="addToCart">
+                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left payment-header" data-action="paymentBack">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Order Payment</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="payment-methods-card">
+                    <div class="bank-card-container" id="bankCardContainer">
+                        <div class="bank-card-row single">
+                            <div class="bank-card-item full-width" id="cardNumberItem">
+                                <div class="bank-card-content">
+                                    <div class="bank-card-icon-left" id="cardIcon">
+                                        <img src="https://storage.botpapa.me/files/812cea30-e401-11f0-b904-772788f215dd.png" alt="T-Bank">
+                                    </div>
+                                    <div class="bank-card-value" id="cardNumberValue">2200 7019 3499 0208</div>
+                                </div>
+                                <div class="bank-card-icon-right" data-action="copyCardNumber">
+                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Copy">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bank-card-row double">
+                            <div class="bank-card-item wide" id="bankNameItem" data-action="changeBank">
+                                <div class="bank-card-content">
+                                    <div class="bank-card-value" id="bankNameValue">Т-Банк</div>
+                                </div>
+                                <div class="bank-card-icon-right">
+                                    <img src="https://storage.botpapa.me/files/816f77a0-e3e4-11f0-b904-772788f215dd.png" alt="Select">
+                                </div>
+                            </div>
+                            
+                            <div class="bank-card-item narrow" id="priceItem">
+                                <div class="bank-card-content">
+                                    <div class="bank-card-value" id="priceValue">129₽</div>
+                                </div>
+                                <div class="bank-card-icon-right" data-action="copyPrice">
+                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Copy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="transfer-data-card">
+                    <div class="transfer-data-header">
+                        <button class="fill-transfer-btn">Fill in Transfer Data</button>
+                        <div class="transfer-data-controls">
+                            <div class="transfer-info-icon" data-action="info">
+                                <img src="https://storage.botpapa.me/files/407a3690-e416-11f0-b904-772788f215dd.png" alt="Info">
+                            </div>
+                            <div class="transfer-info-icon" data-action="support">
+                                <img src="https://storage.botpapa.me/files/52991480-db61-11f0-b904-772788f215dd.png" alt="Support">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transfer-iframe-container">
+                        <div class="corner-bottom-left"></div>
+                        <div class="corner-bottom-right"></div>
+                        <div class="transfer-iframe-mask"></div>
+                        <iframe class="transfer-iframe" id="paymentIframe" src="https://app.botpapa.me/website/%40PlacedMarketBot/st100" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left" data-action="closeModal">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Cart Products</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body" id="cartModalBody"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="checkoutOrderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left" data-action="closeModal">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Place an Order</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body" id="checkoutModalBody"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="collectionsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left" data-action="closeModal">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Collection</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="selection-card">
+                    <div class="selection-item" data-action="selectCollection" data-collection="all">
+                        <div class="selection-icon" id="collectionAll"></div>
+                        <div class="selection-text">All items</div>
+                    </div>
+                    <div class="selection-item" data-action="selectCollection" data-collection="gifts">
+                        <div class="selection-icon" id="collectionGifts"></div>
+                        <div class="selection-text">Telegram Gifts</div>
+                    </div>
+                    <div class="selection-item" data-action="selectCollection" data-collection="stars">
+                        <div class="selection-icon" id="collectionStars"></div>
+                        <div class="selection-text">Telegram Stars</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="sortingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left" data-action="closeModal">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Selection</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="selection-card">
+                    <div class="selection-item" data-action="selectSorting" data-sorting="random">
+                        <div class="selection-icon" id="sortingRandom"></div>
+                        <div class="selection-text">Random</div>
+                    </div>
+                    <div class="selection-item" data-action="selectSorting" data-sorting="low">
+                        <div class="selection-icon" id="sortingLow"></div>
+                        <div class="selection-text">Price: Low to High</div>
+                    </div>
+                    <div class="selection-item" data-action="selectSorting" data-sorting="high">
+                        <div class="selection-icon" id="sortingHigh"></div>
+                        <div class="selection-text">Price: High to Low</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="statisticsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left" data-action="closeModal">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Stars Statistics</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="statistics-card">
+                    <div class="statistics-slider-container">
+                        <div class="statistics-slider-line">
+                            <div class="statistics-slider-indicator" id="statisticsIndicator"></div>
+                            <div class="statistics-slider-option active" data-stat-position="0">Volume</div>
+                            <div class="statistics-slider-option" data-stat-position="1">Orders</div>
+                        </div>
+                    </div>
+                    
+                    <div class="statistics-islands-container">
+                        <div class="statistics-island">
+                            <div class="statistics-island-content">
+                                <div class="statistics-icon">
+                                    <img src="https://storage.botpapa.me/files/d8b72ef0-a0f9-11f0-b4a0-d13431a40d5b.png" alt="Star Icon">
+                                </div>
+                                <div class="statistics-value" id="starsValue">96 573</div>
+                            </div>
+                        </div>
+                        <div class="statistics-island">
+                            <div class="statistics-amount" id="amountValue">124 772₽</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="statistics-buttons-row">
+                    <button class="reviews-button" data-action="openReviews">Reviews</button>
+                    <button class="contact-button" data-action="openContact">Contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="successSentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-left" data-action="backToPayment">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                </div>
+                <div class="modal-header-center">Success Sent</div>
+                <div class="modal-header-right" data-action="closeModal">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="success-sent-card">
+    <h2>Transfer Data has been Sent</h2>
+    <p>Если вы отправили ук. сумму и также заполнили данные перевода, то заказ будет выполнен менее чем за 5-20 м.</p>
+    <p style="margin-top: 12px; color: #aaaaaa;">Если у вас нету имени пользователя, мы не сможем выполнить ваш заказ.</p>
+</div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function triggerVibration() {
+    if (window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback) {
+        Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+    } else if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(10);
+    }
+}
+
+function showCopySuccess(element) {
+    const originalSrc = element.src;
+    const checkIconSrc = 'https://storage.botpapa.me/files/4da523d0-cd63-11f0-aa62-f3a4d21b862b.png';
+    
+    element.src = checkIconSrc;
+    element.style.opacity = '0.7';
+    
+    setTimeout(() => {
+        element.src = originalSrc;
+        element.style.opacity = '';
+    }, 500);
+}
+
+function openSuccessSentModal() {
+    hideAllModals();
+    setTimeout(function() {
+        showModal('successSentModal');
+    }, 100);
+}
+
+function backToPaymentFromSuccess() {
+    hideModal('successSentModal');
+    setTimeout(function() {
+        showModal('paymentModal');
+    }, 100);
+}
+
+window.addEventListener('message', function(event) {
+    if (event.data === 'OPEN_SUCCESS_SENT_MODAL') {
+        openSuccessSentModal();
+    }
+    if (event.data && event.data.type === 'BOTPAPA_ACTION' && event.data.action === 'SUCCESS_SENT_TRIGGER') {
+        openSuccessSentModal();
+    }
+});
+
+let currentCollectionFilter = 'all';
+let currentSorting = 'random';
+let currentProduct = null;
+let cart = [];
+let activeModal = null;
+let cartPurchaseMode = false;
+let currentMenuTab = 'market';
+
+let storeCollectionFilter = 'all';
+let storeSorting = 'random';
+let packsCollectionFilter = 'all';
+let packsSorting = 'random';
+
+function filterByMenuTab(tab) {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        const section = card.getAttribute('data-section');
+        
+        if (tab === 'market') {
+            if (section === 'store') {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        } else {
+            if (section === 'packs') {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    });
+}
+
+function saveFiltersForCurrentTab() {
+    if (currentMenuTab === 'market') {
+        storeCollectionFilter = currentCollectionFilter;
+        storeSorting = currentSorting;
+    } else {
+        packsCollectionFilter = currentCollectionFilter;
+        packsSorting = currentSorting;
+    }
+}
+
+function loadFiltersForCurrentTab() {
+    if (currentMenuTab === 'market') {
+        currentCollectionFilter = storeCollectionFilter;
+        currentSorting = storeSorting;
+    } else {
+        currentCollectionFilter = packsCollectionFilter;
+        currentSorting = packsSorting;
+    }
+    
+    updateCollectionDisplayText();
+    updateSortingDisplayText();
+    
+    const iconMapCollection = {
+        'all': 'collectionAll',
+        'gifts': 'collectionGifts',
+        'stars': 'collectionStars'
+    };
+    document.querySelectorAll('#collectionsModal .selection-icon').forEach(icon => 
+        icon.classList.remove('selected')
+    );
+    if (iconMapCollection[currentCollectionFilter]) {
+        document.getElementById(iconMapCollection[currentCollectionFilter]).classList.add('selected');
+    }
+    
+    const iconMapSorting = {
+        'random': 'sortingRandom',
+        'low': 'sortingLow',
+        'high': 'sortingHigh'
+    };
+    document.querySelectorAll('#sortingModal .selection-icon').forEach(icon => 
+        icon.classList.remove('selected')
+    );
+    if (iconMapSorting[currentSorting]) {
+        document.getElementById(iconMapSorting[currentSorting]).classList.add('selected');
+    }
+}
+
+window.handleMenuChange = function(tab) {
+    saveFiltersForCurrentTab();
+    currentMenuTab = tab;
+    loadFiltersForCurrentTab();
+    filterByMenuTab(tab);
+    searchProducts();
+    updateResetButtonState();
+};
+
+const menuSlider = document.getElementById('menuSlider');
+const menuItems = document.getElementById('menuItems');
+const marketItem = document.getElementById('marketItem');
+const bundleItem = document.getElementById('bundleItem');
+const profileButton = document.getElementById('profileButton');
+
+let menuActiveIndex = 0;
+let isAnimating = false;
+let animationTimeout;
+
+function forceStyles() {
+    void marketItem.offsetWidth;
+    void bundleItem.offsetWidth;
+}
+
+function blockClicks() {
+    isAnimating = true;
+    menuItems.classList.add('blocked');
+    
+    if (animationTimeout) {
+        clearTimeout(animationTimeout);
+    }
+    
+    animationTimeout = setTimeout(() => {
+        menuItems.classList.remove('blocked');
+        isAnimating = false;
+        animationTimeout = null;
+    }, 300);
+}
+
+function setActiveMenuItem(index) {
+    if (isAnimating || index === menuActiveIndex) return;
+    
+    blockClicks();
+    forceStyles();
+    
+    marketItem.classList.remove('market-active');
+    bundleItem.classList.remove('bundle-active');
+    
+    forceStyles();
+    
+    if (index === 0) {
+        marketItem.classList.add('market-active');
+        window.handleMenuChange('market');
+    } else {
+        bundleItem.classList.add('bundle-active');
+        window.handleMenuChange('packs');
+    }
+    
+    forceStyles();
+    
+    if (index === 0) {
+        menuSlider.style.left = '3px';
+    } else {
+        menuSlider.style.left = 'calc(50% + 3px)';
+    }
+    
+    menuActiveIndex = index;
+}
+
+if (marketItem) {
+    marketItem.addEventListener('click', function(e) {
+        e.preventDefault();
+        triggerVibration();
+        setActiveMenuItem(0);
+    });
+}
+
+if (bundleItem) {
+    bundleItem.addEventListener('click', function(e) {
+        e.preventDefault();
+        triggerVibration();
+        setActiveMenuItem(1);
+    });
+}
+
+if (profileButton) {
+    profileButton.addEventListener('click', function() {
+        triggerVibration();
+        window.open('https://t.me/PlacedMarketBot?start=', '_blank');
+    });
+}
+
+const bankIcons = {
+    'Т-Банк': 'https://storage.botpapa.me/files/a8ab1780-e410-11f0-b904-772788f215dd.png',
+    'СберБанк': 'https://storage.botpapa.me/files/afd077d0-e410-11f0-b904-772788f215dd.png',
+    'ВТБ Банк': 'https://storage.botpapa.me/files/d9c80760-e410-11f0-b904-772788f215dd.png',
+    'Ozon Банк': 'https://storage.botpapa.me/files/b6002d80-e410-11f0-b904-772788f215dd.png',
+    'Альфа Банк': 'https://storage.botpapa.me/files/bc382090-e410-11f0-b904-772788f215dd.png'
+};
+
+const banksData = {
+    'Т-Банк': '2200 7019 3499 0208',
+    'СберБанк': '2202 2084 4441 4743',
+    'ВТБ Банк': '2200 2418 6382 9697',
+    'Ozon Банк': '2204 3203 9062 7166',
+    'Альфа Банк': '2200 1529 6836 2817'
+};
+
+let currentBankIndex = 0;
+const bankNames = Object.keys(banksData);
+
+const statisticsData = {
+    'all': { stars: '96 573', amount: '124 772₽' },
+    'orders': { stars: '96 573', amount: '1 077 📦' }
+};
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function openSupportLink() {
+    triggerVibration();
+    window.open('https://t.me/PlacedSupport', '_blank');
+}
+
+function openFaqLink() {
+    triggerVibration();
+    window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
+}
+
+function openReviewsLink() {
+    triggerVibration();
+    window.open('https://t.me/PlacedReviews', '_blank');
+}
+
+function copyToClipboard(text, copyElement) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    
+    if (copyElement) {
+        showCopySuccess(copyElement);
+    }
+}
+
+function checkProductAvailability(cardElement) {
+    return cardElement.getAttribute('data-available') === 'on';
+}
+
+function showProductUnavailableError() {
+    triggerVibration();
+    alert('This product is currently unavailable. Please try another product.');
+}
+
+function updateBankCard() {
+    const cardIcon = document.getElementById('cardIcon');
+    const cardNumberValue = document.getElementById('cardNumberValue');
+    const bankNameValue = document.getElementById('bankNameValue');
+    
+    const currentBankName = bankNames[currentBankIndex];
+    const currentCardNumber = banksData[currentBankName];
+    const currentBankIcon = bankIcons[currentBankName];
+    
+    cardIcon.innerHTML = `<img src="${currentBankIcon}" alt="${currentBankName}">`;
+    cardNumberValue.textContent = currentCardNumber;
+    bankNameValue.textContent = currentBankName;
+}
+
+function changeBank() {
+    triggerVibration();
+    currentBankIndex = (currentBankIndex + 1) % bankNames.length;
+    updateBankCard();
+}
+
+function updatePrice(price) {
+    document.getElementById('priceValue').textContent = `${price}₽`;
+}
+
+function updateCartTotal() {
+    const cartTextElement = document.getElementById('cartText');
+    if (cartTextElement) {
+        if (cart.length === 0) {
+            cartTextElement.textContent = '0₽';
+        } else {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTextElement.textContent = `${total}₽`;
+        }
+    }
+}
+
+function applySearch() {
+    triggerVibration();
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchProducts();
+    }
+}
+
+function searchProducts() {
+    const searchInput = document.getElementById('searchInput');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.card');
+    
+    const oldNoResults = document.querySelector('.no-results');
+    if (oldNoResults) oldNoResults.remove();
+    
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+        const cardName = card.getAttribute('data-name').toLowerCase();
+        const subcategory = card.getAttribute('data-subcategory');
+        const section = card.getAttribute('data-section');
+        
+        let shouldShowByMenu = true;
+        if (currentMenuTab === 'market') {
+            shouldShowByMenu = (section === 'store');
+        } else {
+            shouldShowByMenu = (section === 'packs');
+        }
+        
+        if (!shouldShowByMenu) {
+            card.style.display = 'none';
+            return;
+        }
+        
+        let matchesSearch = true;
+        if (searchTerm !== '') {
+            matchesSearch = cardName.includes(searchTerm);
+        }
+        
+        let matchesCollection = true;
+        if (currentCollectionFilter !== 'all' && currentMenuTab === 'market') {
+            matchesCollection = (subcategory === currentCollectionFilter);
+        }
+        
+        if (matchesSearch && matchesCollection) {
+            card.style.display = 'flex';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    if (visibleCount === 0 && searchTerm !== '') {
+        const cardsContainer = document.getElementById('cardsContainer');
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = `No products found matching "${searchInput.value}"`;
+        cardsContainer.appendChild(noResults);
+    }
+    
+    if (currentSorting !== 'random') {
+        applySortingToVisible();
+    }
+    
+    updateResetButtonState();
+}
+
+function applyCollectionFilter() {
+    if (currentMenuTab === 'packs') {
+        alert('Sorting collections in this section is not available');
+        return;
+    }
+    searchProducts();
+    updateCollectionDisplayText();
+}
+
+function updateCollectionDisplayText() {
+    const collectionsText = document.getElementById('collectionsText');
+    if (!collectionsText) return;
+    
+    switch(currentCollectionFilter) {
+        case 'gifts':
+            collectionsText.textContent = 'Gifts';
+            break;
+        case 'stars':
+            collectionsText.textContent = 'Stars';
+            break;
+        case 'all':
+        default:
+            collectionsText.textContent = 'Collection';
+            break;
+    }
+}
+
+function applySortingToVisible() {
+    const cardsContainer = document.getElementById('cardsContainer');
+    const allCards = Array.from(cardsContainer.querySelectorAll('.card'));
+    
+    const noResults = document.querySelector('.no-results');
+    if (noResults) noResults.remove();
+    
+    const visibleCards = allCards.filter(card => card.style.display !== 'none');
+    if (visibleCards.length === 0) return;
+    
+    let sortedCards;
+    switch(currentSorting) {
+        case 'random':
+            sortedCards = shuffleArray([...visibleCards]);
+            break;
+        case 'low':
+            sortedCards = [...visibleCards].sort((a, b) => 
+                parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price'))
+            );
+            break;
+        case 'high':
+            sortedCards = [...visibleCards].sort((a, b) => 
+                parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price'))
+            );
+            break;
+        default:
+            sortedCards = visibleCards;
+    }
+    
+    const hiddenCards = allCards.filter(card => card.style.display === 'none');
+    
+    hiddenCards.forEach(card => card.remove());
+    sortedCards.forEach(card => card.remove());
+    
+    sortedCards.forEach(card => cardsContainer.appendChild(card));
+    hiddenCards.forEach(card => cardsContainer.appendChild(card));
+    
+    if (noResults) cardsContainer.appendChild(noResults);
+    
+    updateSortingDisplayText();
+}
+
+function updateSortingDisplayText() {
+    const sortingText = document.getElementById('sortingText');
+    if (!sortingText) return;
+    
+    switch(currentSorting) {
+        case 'low':
+            sortingText.textContent = 'Low to High';
+            break;
+        case 'high':
+            sortingText.textContent = 'High to Low';
+            break;
+        case 'random':
+        default:
+            sortingText.textContent = 'Selection';
+            break;
+    }
+}
+
+function resetAllFilters() {
+    triggerVibration();
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+    
+    currentCollectionFilter = 'all';
+    document.getElementById('collectionsText').textContent = 'Collection';
+    
+    currentSorting = 'random';
+    document.getElementById('sortingText').textContent = 'Selection';
+    
+    searchProducts();
+    
+    document.querySelectorAll('#collectionsModal .selection-icon').forEach(icon => 
+        icon.classList.remove('selected')
+    );
+    document.getElementById('collectionAll').classList.add('selected');
+    
+    document.querySelectorAll('#sortingModal .selection-icon').forEach(icon => 
+        icon.classList.remove('selected')
+    );
+    document.getElementById('sortingRandom').classList.add('selected');
+    
+    updateResetButtonState();
+}
+
+function updateResetButtonState() {
+    const resetButton = document.getElementById('resetFiltersButton');
+    const searchInput = document.getElementById('searchInput');
+    const hasActiveFilters = currentCollectionFilter !== 'all' || 
+                            currentSorting !== 'random' || 
+                            (searchInput && searchInput.value !== '');
+    
+    if (hasActiveFilters) {
+        resetButton.classList.add('active');
+    } else {
+        resetButton.classList.remove('active');
+    }
+}
+
+function showPacksError() {
+    triggerVibration();
+    alert('This product cannot be added to the cart');
+}
+
+function toggleCart(button) {
+    triggerVibration();
+    const card = button.closest('.card');
+    const section = card.getAttribute('data-section');
+    
+    if (section === 'packs') {
+        showPacksError();
+        return;
+    }
+    
+    if (!checkProductAvailability(card)) {
+        showProductUnavailableError();
+        return;
+    }
+    
+    const name = card.getAttribute('data-name');
+    const price = parseInt(card.getAttribute('data-price'));
+    const image = card.getAttribute('data-image');
+    const subcategory = card.getAttribute('data-subcategory');
+    const iframe = card.getAttribute('data-iframe');
+    const category = card.getAttribute('data-category');
+    const nftId = card.getAttribute('data-nft-id') || '';
+    const productId = card.getAttribute('data-product-id');
+    const uniqueIdAttr = card.getAttribute('data-unique-id');
+    
+    const existingItemIndex = cart.findIndex(item => item.uniqueId === uniqueIdAttr);
+    
+    if (existingItemIndex !== -1) {
+        cart.splice(existingItemIndex, 1);
+        
+        const icon = button.querySelector('img');
+        icon.src = 'https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg';
+        icon.className = 'cart-icon';
+        button.classList.remove('in-cart');
+    } else {
+        if (cart.length >= 2) {
+            triggerVibration();
+            alert('You can add a maximum of 2 products to the cart');
+            return;
+        }
+        
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            subcategory: subcategory,
+            iframe: iframe,
+            category: category,
+            nftId: nftId,
+            productId: productId,
+            uniqueId: uniqueIdAttr,
+            active: true
+        });
+        
+        const icon = button.querySelector('img');
+        icon.src = 'https://storage.botpapa.me/files/4da523d0-cd63-11f0-aa62-f3a4d21b862b.png';
+        icon.className = 'cart-added-icon';
+        button.classList.add('in-cart');
+    }
+    
+    updateCartDisplay();
+    updateCartButtonState();
+    updateCartTotal();
+    saveState();
+    
+    if (currentProduct && currentProduct.uniqueId === uniqueIdAttr) {
+        updateCheckoutOrderModalContent();
+    }
+}
+
+function toggleCartFromModal(name, nftId, uniqueId) {
+    triggerVibration();
+    
+    const cards = document.querySelectorAll('.card');
+    let cardElement = null;
+    
+    cards.forEach(card => {
+        const cardUniqueId = card.getAttribute('data-unique-id');
+        if (cardUniqueId === uniqueId) {
+            cardElement = card;
+        }
+    });
+    
+    if (cardElement) {
+        const section = cardElement.getAttribute('data-section');
+        if (section === 'packs') {
+            showPacksError();
+            return;
+        }
+        
+        if (!checkProductAvailability(cardElement)) {
+            showProductUnavailableError();
+            return;
+        }
+    }
+    
+    const existingItemIndex = cart.findIndex(item => item.uniqueId === uniqueId);
+    
+    if (existingItemIndex !== -1) {
+        cart.splice(existingItemIndex, 1);
+        
+        cards.forEach(card => {
+            const cardUniqueId = card.getAttribute('data-unique-id');
+            if (cardUniqueId === uniqueId) {
+                const button = card.querySelector('.cart-button');
+                if (button) {
+                    const icon = button.querySelector('img');
+                    icon.src = 'https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg';
+                    icon.className = 'cart-icon';
+                    button.classList.remove('in-cart');
+                }
+            }
+        });
+    } else {
+        if (cart.length >= 2) {
+            triggerVibration();
+            alert('You can add a maximum of 2 products to the cart');
+            return;
+        }
+        
+        let productData = null;
+        
+        cards.forEach(card => {
+            const cardUniqueId = card.getAttribute('data-unique-id');
+            if (cardUniqueId === uniqueId) {
+                productData = {
+                    name: card.getAttribute('data-name'),
+                    price: parseInt(card.getAttribute('data-price')),
+                    image: card.getAttribute('data-image'),
+                    subcategory: card.getAttribute('data-subcategory'),
+                    iframe: card.getAttribute('data-iframe'),
+                    category: card.getAttribute('data-category'),
+                    nftId: card.getAttribute('data-nft-id') || '',
+                    productId: card.getAttribute('data-product-id'),
+                    uniqueId: cardUniqueId,
+                    active: true
+                };
+            }
+        });
+        
+        if (productData) {
+            cart.push(productData);
+            
+            cards.forEach(card => {
+                const cardUniqueId = card.getAttribute('data-unique-id');
+                if (cardUniqueId === uniqueId) {
+                    const button = card.querySelector('.cart-button');
+                    if (button) {
+                        const icon = button.querySelector('img');
+                        icon.src = 'https://storage.botpapa.me/files/4da523d0-cd63-11f0-aa62-f3a4d21b862b.png';
+                        icon.className = 'cart-added-icon';
+                        button.classList.add('in-cart');
+                    }
+                }
+            });
+        }
+    }
+    
+    updateCartDisplay();
+    updateCartButtonState();
+    updateCartTotal();
+    saveState();
+    
+    if (currentProduct && currentProduct.uniqueId === uniqueId) {
+        updateCheckoutOrderModalContent();
+    }
+}
+
+function removeFromCart(uniqueId) {
+    triggerVibration();
+    cart = cart.filter(item => item.uniqueId !== uniqueId);
+    
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const cardUniqueId = card.getAttribute('data-unique-id');
+        if (cardUniqueId === uniqueId) {
+            const button = card.querySelector('.cart-button');
+            if (button) {
+                const icon = button.querySelector('img');
+                icon.src = 'https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg';
+                icon.className = 'cart-icon';
+                button.classList.remove('in-cart');
+            }
+        }
+    });
+    
+    updateCartDisplay();
+    updateCartButtonState();
+    updateCartTotal();
+    saveState();
+    
+    if (cart.length === 0) hideModal('cartModal');
+    
+    if (currentProduct && currentProduct.uniqueId === uniqueId) {
+        updateCheckoutOrderModalContent();
+    }
+}
+
+function clearAllCart() {
+    triggerVibration();
+    if (cart.length === 0) return;
+    
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const button = card.querySelector('.cart-button');
+        if (button) {
+            const icon = button.querySelector('img');
+            icon.src = 'https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg';
+            icon.className = 'cart-icon';
+            button.classList.remove('in-cart');
+        }
+    });
+    
+    cart = [];
+    updateCartDisplay();
+    updateCartButtonState();
+    updateCartTotal();
+    saveState();
+    hideModal('cartModal');
+}
+
+const combinationMap = {
+    'stars_13+stars_100': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st113n', price: 20 + 135 },
+    'stars_13+stars_150': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st163n', price: 20 + 189 },
+    'stars_13+stars_250': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st263n', price: 20 + 325 },
+    'stars_13+stars_350': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st363n', price: 20 + 439 },
+    'stars_13+stars_500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st513n', price: 20 + 625 },
+    'stars_13+stars_750': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st763n', price: 20 + 929 },
+    'stars_13+stars_1000': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1013n', price: 20 + 1235 },
+    'stars_13+stars_1500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1513n', price: 20 + 1839 },
+    'stars_21+stars_100': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st121n', price: 34 + 135 },
+    'stars_21+stars_150': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st171n', price: 34 + 189 },
+    'stars_21+stars_250': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st271n', price: 34 + 325 },
+    'stars_21+stars_350': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st371n', price: 34 + 439 },
+    'stars_21+stars_500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st521n', price: 34 + 625 },
+    'stars_21+stars_750': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st771n', price: 34 + 929 },
+    'stars_21+stars_1000': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1021n', price: 34 + 1235 },
+    'stars_21+stars_1500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1521n', price: 34 + 1839 },
+    'stars_43+stars_100': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st143n', price: 66 + 135 },
+    'stars_43+stars_150': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st193n', price: 66 + 189 },
+    'stars_43+stars_250': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st293n', price: 66 + 325 },
+    'stars_43+stars_350': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st393n', price: 66 + 439 },
+    'stars_43+stars_500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st543n', price: 66 + 625 },
+    'stars_43+stars_750': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st793n', price: 66 + 929 },
+    'stars_43+stars_1000': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1043n', price: 66 + 1235 },
+    'stars_43+stars_1500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1543n', price: 66 + 1839 },
+    'stars_85+stars_100': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st185n', price: 129 + 135 },
+    'stars_85+stars_150': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st235n', price: 129 + 189 },
+    'stars_85+stars_250': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st335n', price: 129 + 325 },
+    'stars_85+stars_350': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st435n', price: 129 + 439 },
+    'stars_85+stars_500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st585n', price: 129 + 625 },
+    'stars_85+stars_750': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st835n', price: 129 + 929 },
+    'stars_85+stars_1000': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1085n', price: 129 + 1235 },
+    'stars_85+stars_1500': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st1585n', price: 129 + 1839 },
+    'stars_13+stars_21': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st34n', price: 20 + 34 },
+    'stars_13+stars_43': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st56n', price: 20 + 66 },
+    'stars_13+stars_85': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st98n', price: 20 + 129 },
+    'stars_21+stars_43': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st64n', price: 34 + 66 },
+    'stars_21+stars_85': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st106n', price: 34 + 129 },
+    'stars_43+stars_85': { iframe: 'https://app.botpapa.me/website/%40PlacedMarketBot/st128n', price: 66 + 129 }
+};
+
+function handleCartBuy() {
+    triggerVibration();
+    if (cart.length === 0) return;
+
+    const hasPacksItems = cart.some(item => {
+        const card = document.querySelector(`.card[data-unique-id="${item.uniqueId}"]`);
+        return card && card.getAttribute('data-section') === 'packs';
+    });
+    
+    if (hasPacksItems) {
+        triggerVibration();
+        alert('Premium products cannot be purchased through cart');
+        return;
+    }
+
+    let iframeUrl = null;
+    let totalPrice = 0;
+
+    if (cart.length === 1) {
+        iframeUrl = cart[0].iframe;
+        totalPrice = cart[0].price;
+        currentProduct = {
+            price: totalPrice.toString(),
+            name: cart[0].name,
+            image: cart[0].image,
+            iframe: iframeUrl,
+            nftId: cart[0].nftId || '',
+            productId: cart[0].productId,
+            uniqueId: cart[0].uniqueId
+        };
+    } else if (cart.length === 2) {
+        const sortedCart = [...cart].sort((a, b) => a.price - b.price);
+        const uniqueIds = sortedCart.map(item => item.uniqueId).join('+');
+        
+        const combination = combinationMap[uniqueIds];
+        if (!combination) {
+            alert('This combination of products is not available for purchase together.');
+            return;
+        }
+        iframeUrl = combination.iframe;
+        totalPrice = combination.price;
+        currentProduct = {
+            price: totalPrice.toString(),
+            name: sortedCart.map(item => item.name).join(' + '),
+            image: sortedCart[0].image,
+            iframe: iframeUrl,
+            nftId: '',
+            productId: '',
+            uniqueId: uniqueIds
+        };
+    } else {
+        alert('You can only purchase up to 2 items at once.');
+        return;
+    }
+
+    cartPurchaseMode = true;
+    hideModal('cartModal');
+
+    const paymentIframe = document.getElementById('paymentIframe');
+    updatePrice(totalPrice);
+    paymentIframe.classList.remove('loaded');
+    paymentIframe.src = iframeUrl;
+
+    paymentIframe.onload = function() {
+        setTimeout(() => paymentIframe.classList.add('loaded'), 30);
+    };
+
+    setTimeout(() => showModal('paymentModal'), 300);
+}
+
+function updateCartButtonState() {}
+
+function formatCartItemName(name, nftId) {
+    return nftId ? `${name} #${nftId}` : name;
+}
+
+function getCollectionText(cardElement) {
+    if (cardElement) {
+        const section = cardElement.getAttribute('data-section');
+        if (section === 'packs') {
+            return 'Telegram Premium';
+        }
+        const subcategory = cardElement.getAttribute('data-subcategory');
+        if (subcategory === 'gifts') return 'Telegram Gifts';
+        if (subcategory === 'stars') return 'Telegram Stars';
+    }
+    return '';
+}
+
+function getCollectionTextByName(name) {
+    const card = Array.from(document.querySelectorAll('.card')).find(card => 
+        card.getAttribute('data-name') === name
+    );
+    return getCollectionText(card);
+}
+
+function updateCartDisplay() {
+    const cartModalBody = document.getElementById('cartModalBody');
+    if (!cartModalBody) return;
+    
+    if (cart.length === 0) {
+        cartModalBody.innerHTML = '<div class="empty-cart" style="color: #888; text-align: center; padding: 20px;">Cart is empty</div>';
+        return;
+    }
+    
+    let cartHTML = '<div class="cart-items-container">';
+    
+    cart.forEach(item => {
+        const formattedName = formatCartItemName(item.name, item.nftId);
+        const collectionText = getCollectionTextByName(item.name);
+        const commission = 0;
+        
+        cartHTML += `
+            <div class="cart-item">
+                <div class="cart-item-row">
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-name-row">
+                            <span class="cart-item-title">${formattedName}</span>
+                            <span class="cart-item-price">${item.price}₽</span>
+                        </div>
+                        <div class="cart-item-collection-row">
+                            <span class="cart-item-collection">${collectionText}</span>
+                            <span class="cart-item-price-label">Price</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-divider"></div>
+                <div class="cart-commission-row">
+                    <span class="cart-commission-label">Commission</span>
+                    <span class="cart-commission-value">${commission}₽</span>
+                </div>
+            </div>
+        `;
+    });
+    
+    cartHTML += '</div>';
+    
+    const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+    cartHTML += `
+        <div class="cart-buttons-row">
+            <button class="clear-all-btn" data-action="clearAllCart">Clear All</button>
+            <button class="cart-buy-btn" data-action="cartBuy">Buy ${totalPrice}₽</button>
+        </div>
+    `;
+    
+    cartModalBody.innerHTML = cartHTML;
+}
+
+function openCheckoutOrderModal(button) {
+    triggerVibration();
+    const card = button.closest('.card');
+    
+    const section = card.getAttribute('data-section');
+    if (section === 'packs' && card.getAttribute('data-available') !== 'on') {
+        showProductUnavailableError();
+        return;
+    }
+    
+    if (!checkProductAvailability(card) && section !== 'packs') {
+        showProductUnavailableError();
+        return;
+    }
+    
+    const price = button.getAttribute('data-card-price');
+    const name = button.getAttribute('data-card-name');
+    const image = button.getAttribute('data-card-image');
+    const iframeSrc = button.getAttribute('data-card-iframe');
+    const nftId = button.getAttribute('data-card-nft-id') || '';
+    const productId = button.getAttribute('data-card-product-id');
+    const uniqueId = card.getAttribute('data-unique-id');
+    const collectionText = card.getAttribute('data-collection-text') || getCollectionText(card);
+    
+    currentProduct = { price, name, image, iframe: iframeSrc, nftId, productId, uniqueId, collectionText };
+    
+    updateCheckoutOrderModalContent();
+    showModal('checkoutOrderModal');
+}
+
+function updateCheckoutOrderModalContent() {
+    const checkoutModalBody = document.getElementById('checkoutModalBody');
+    if (!currentProduct) return;
+    
+    const { name, price, image, nftId, uniqueId, collectionText } = currentProduct;
+    const formattedName = formatCartItemName(name, nftId);
+    const finalCollectionText = collectionText || getCollectionTextByName(name);
+    
+    const existingItemIndex = cart.findIndex(item => item.uniqueId === uniqueId);
+    const isInCart = existingItemIndex !== -1;
+    
+    const card = document.querySelector(`.card[data-unique-id="${uniqueId}"]`);
+    const isPacksProduct = card && card.getAttribute('data-section') === 'packs';
+    const isUnavailable = card && card.getAttribute('data-available') !== 'on';
+    
+    let addToCartButton = '';
+    if (!isPacksProduct) {
+        addToCartButton = `<button class="checkout-add-to-cart-btn ${isInCart ? 'added' : ''}" data-action="checkoutAddToCart" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
+                                ${isInCart ? 'Remove' : 'Add to Cart'}
+                          </button>`;
+    } else {
+        addToCartButton = `<button class="checkout-add-to-cart-btn" data-action="checkoutAddToCartPacks" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
+                                Add to Cart
+                          </button>`;
+    }
+    
+    const commission = 0;
+    
+    const checkoutHTML = `
+        <div class="checkout-product-card">
+            <div class="checkout-product-row">
+                <div class="checkout-product-image">
+                    <img src="${image}" alt="${name}">
+                </div>
+                <div class="checkout-product-details">
+                    <div class="checkout-product-name-row">
+                        <span class="checkout-product-name">${formattedName}</span>
+                        <span class="checkout-product-price">${price}₽</span>
+                    </div>
+                    <div class="checkout-product-collection-row">
+                        <span class="checkout-product-collection">${finalCollectionText}</span>
+                        <span class="checkout-product-price-label">Price</span>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-divider"></div>
+            <div class="checkout-commission-row">
+                <span class="checkout-commission-label">Commission</span>
+                <span class="checkout-commission-value">${commission}₽</span>
+            </div>
+        </div>
+        <div class="checkout-buttons-row">
+            ${addToCartButton}
+            <button class="checkout-buy-btn" data-action="checkoutBuy" data-price="${price}" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}" data-section="${isPacksProduct ? 'packs' : 'store'}">
+                Buy ${price}₽
+            </button>
+        </div>
+    `;
+    
+    checkoutModalBody.innerHTML = checkoutHTML;
+}
+
+function checkoutAddToCart(name, nftId, uniqueId) {
+    toggleCartFromModal(name, nftId, uniqueId);
+}
+
+function checkoutAddToCartPacks() {
+    triggerVibration();
+    alert('Premium products cannot be added to cart');
+}
+
+function checkoutBuy(price, name, nftId, uniqueId, section) {
+    triggerVibration();
+    if (!currentProduct) return;
+    
+    const card = document.querySelector(`.card[data-unique-id="${uniqueId}"]`);
+    if (section === 'packs' && card && card.getAttribute('data-available') !== 'on') {
+        showProductUnavailableError();
+        return;
+    }
+    
+    cartPurchaseMode = false;
+    hideModal('checkoutOrderModal');
+    
+    const paymentIframe = document.getElementById('paymentIframe');
+    updatePrice(price);
+    paymentIframe.classList.remove('loaded');
+    paymentIframe.src = currentProduct.iframe;
+    
+    paymentIframe.onload = function() {
+        setTimeout(() => paymentIframe.classList.add('loaded'), 30);
+    };
+    
+    setTimeout(() => showModal('paymentModal'), 300);
+}
+
+function selectCollection(collection) {
+    if (currentMenuTab === 'packs') {
+        alert('Sorting collections in this section is not available');
+        return;
+    }
+    
+    triggerVibration();
+    document.querySelectorAll('#collectionsModal .selection-icon').forEach(icon => 
+        icon.classList.remove('selected')
+    );
+    
+    const iconMap = {
+        'all': 'collectionAll',
+        'gifts': 'collectionGifts',
+        'stars': 'collectionStars'
+    };
+    
+    if (iconMap[collection]) {
+        document.getElementById(iconMap[collection]).classList.add('selected');
+    }
+    
+    currentCollectionFilter = collection;
+    
+    hideModal('collectionsModal');
+    searchProducts();
+    updateResetButtonState();
+    saveState();
+}
+
+function selectSorting(sorting) {
+    triggerVibration();
+    document.querySelectorAll('#sortingModal .selection-icon').forEach(icon => 
+        icon.classList.remove('selected')
+    );
+    
+    const iconMap = {
+        'random': 'sortingRandom',
+        'low': 'sortingLow',
+        'high': 'sortingHigh'
+    };
+    
+    if (iconMap[sorting]) {
+        document.getElementById(iconMap[sorting]).classList.add('selected');
+    }
+    
+    currentSorting = sorting;
+    
+    hideModal('sortingModal');
+    applySortingToVisible();
+    updateResetButtonState();
+    saveState();
+}
+
+function moveStatisticsSlider(position) {
+    triggerVibration();
+    const options = document.querySelectorAll('.statistics-slider-option');
+    const indicator = document.getElementById('statisticsIndicator');
+    
+    options.forEach(option => option.classList.remove('active'));
+    options[position].classList.add('active');
+    
+    indicator.style.left = `${position * 50}%`;
+    
+    const period = position === 0 ? 'all' : 'orders';
+    const starsValue = document.getElementById('starsValue');
+    const amountValue = document.getElementById('amountValue');
+    
+    if (statisticsData[period]) {
+        starsValue.textContent = statisticsData[period].stars;
+        amountValue.textContent = statisticsData[period].amount;
+    }
+}
+
+function showModal(modalId) {
+    triggerVibration();
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    
+    if (modalId === 'cartModal' && cart.length === 0) {
+        alert('Cart is empty');
+        return;
+    }
+    
+    hideAllModals();
+    
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+    activeModal = modal;
+    
+    if (modalId === 'paymentModal' && currentProduct) {
+        updatePrice(currentProduct.price);
+    }
+}
+
+function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    
+    if (activeModal && activeModal.id === modalId) activeModal = null;
+}
+
+function hideAllModals() {
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.classList.remove('active');
+    });
+    document.body.classList.remove('modal-open');
+    activeModal = null;
+}
+
+function paymentBack() {
+    triggerVibration();
+    hideModal('paymentModal');
+    
+    if (cartPurchaseMode) {
+        cartPurchaseMode = false;
+        setTimeout(() => showModal('cartModal'), 300);
+    } else {
+        setTimeout(() => showModal('checkoutOrderModal'), 300);
+    }
+}
+
+function saveState() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('storeCollectionFilter', storeCollectionFilter);
+    localStorage.setItem('storeSorting', storeSorting);
+    localStorage.setItem('packsCollectionFilter', packsCollectionFilter);
+    localStorage.setItem('packsSorting', packsSorting);
+    localStorage.setItem('bankIndex', currentBankIndex.toString());
+    localStorage.setItem('menuTab', currentMenuTab);
+}
+
+function restoreUI() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        try {
+            cart = JSON.parse(savedCart);
+            
+            cart.forEach(item => {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    const cardUniqueId = card.getAttribute('data-unique-id');
+                    if (cardUniqueId === item.uniqueId) {
+                        const button = card.querySelector('.cart-button');
+                        if (button) {
+                            const icon = button.querySelector('img');
+                            icon.src = 'https://storage.botpapa.me/files/4da523d0-cd63-11f0-aa62-f3a4d21b862b.png';
+                            icon.className = 'cart-added-icon';
+                            button.classList.add('in-cart');
+                        }
+                    }
+                });
+            });
+            
+            updateCartDisplay();
+            updateCartButtonState();
+            updateCartTotal();
+        } catch (e) {
+            console.error('Error parsing cart from localStorage:', e);
+        }
+    } else {
+        updateCartTotal();
+    }
+    
+    const savedStoreCollection = localStorage.getItem('storeCollectionFilter');
+    if (savedStoreCollection) {
+        storeCollectionFilter = savedStoreCollection;
+    }
+    
+    const savedStoreSorting = localStorage.getItem('storeSorting');
+    if (savedStoreSorting) {
+        storeSorting = savedStoreSorting;
+    }
+    
+    const savedPacksCollection = localStorage.getItem('packsCollectionFilter');
+    if (savedPacksCollection) {
+        packsCollectionFilter = savedPacksCollection;
+    }
+    
+    const savedPacksSorting = localStorage.getItem('packsSorting');
+    if (savedPacksSorting) {
+        packsSorting = savedPacksSorting;
+    }
+    
+    const savedMenuTab = localStorage.getItem('menuTab');
+    if (savedMenuTab === 'packs') {
+        setActiveMenuItem(1);
+    } else {
+        setActiveMenuItem(0);
+    }
+    
+    const savedBankIndex = localStorage.getItem('bankIndex');
+    if (savedBankIndex) {
+        currentBankIndex = parseInt(savedBankIndex);
+        updateBankCard();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    moveStatisticsSlider(0);
+    updateBankCard();
+    updateCartTotal();
+    
+    document.getElementById('collectionsText').textContent = 'Collection';
+    document.getElementById('sortingText').textContent = 'Selection';
+    
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') applySearch();
+        });
+    }
+    
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', applySearch);
+    }
+    
+    const headerImage = document.getElementById('headerImage');
+    if (headerImage) {
+        headerImage.addEventListener('click', function() {
+            window.open('https://t.me/PlacedCommunity', '_blank');
+        });
+    }
+    
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.zIndex = '2147483647';
+        });
+    }
+    
+    marketItem.classList.add('market-active');
+    bundleItem.classList.remove('bundle-active');
+    menuSlider.style.left = '3px';
+    menuActiveIndex = 0;
+    currentMenuTab = 'market';
+    
+    restoreUI();
+    
+    filterByMenuTab('market');
+    searchProducts();
+});
+
+document.addEventListener('click', function(e) {
+    const target = e.target.closest('[data-action]');
+    if (!target) {
+        const statisticsSliderOption = e.target.closest('.statistics-slider-option');
+        if (statisticsSliderOption) {
+            triggerVibration();
+            moveStatisticsSlider(parseInt(statisticsSliderOption.dataset.statPosition));
+            return;
+        }
+        
+        const modalOpener = e.target.closest('[data-modal]');
+        if (modalOpener) {
+            const modalId = modalOpener.dataset.modal;
+            
+            if (modalId === 'checkoutOrderModal' && e.target.classList.contains('price-button')) {
+                openCheckoutOrderModal(e.target);
+                return;
+            }
+            
+            if (modalId === 'collectionsModal' && currentMenuTab === 'packs') {
+                alert('Sorting collections in this section is not available');
+                return;
+            }
+            
+            showModal(modalId);
+            return;
+        }
+        
+        if (e.target.classList.contains('modal-overlay')) {
+            hideAllModals();
+            return;
+        }
+        
+        if (e.target.closest('#buyTonButton')) {
+            triggerVibration();
+            alert('Wallet function is temporarily unavailable');
+            return;
+        }
+        
+        if (e.target.closest('#resetFiltersButton')) {
+            resetAllFilters();
+            return;
+        }
+        
+        return;
+    }
+
+    triggerVibration();
+
+    const action = target.dataset.action;
+
+    if (action === 'addToCart') {
+        toggleCart(target);
+        saveState();
+        return;
+    }
+
+    switch(action) {
+        case 'applySearch':
+            applySearch();
+            break;
+        case 'paymentBack':
+            paymentBack();
+            break;
+        case 'backToPayment':
+            backToPaymentFromSuccess();
+            break;
+        case 'copyCardNumber':
+            const cardNumber = document.getElementById('cardNumberValue').textContent;
+            copyToClipboard(cardNumber.replace(/\s/g, ''), target.querySelector('img'));
+            break;
+        case 'changeBank':
+            changeBank();
+            saveState();
+            break;
+        case 'copyPrice':
+            const price = document.getElementById('priceValue').textContent;
+            copyToClipboard(price, target.querySelector('img'));
+            break;
+        case 'selectCollection':
+            selectCollection(target.dataset.collection);
+            break;
+        case 'selectSorting':
+            selectSorting(target.dataset.sorting);
+            break;
+        case 'support':
+            openSupportLink();
+            break;
+        case 'info':
+            if (currentMenuTab === 'packs') {
+                window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
+            } else {
+                if (currentProduct && currentProduct.uniqueId && document.querySelector(`.card[data-unique-id="${currentProduct.uniqueId}"]`)?.getAttribute('data-section') === 'packs') {
+                    window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
+                } else {
+                    window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
+                }
+            }
+            break;
+        case 'openFaq':
+            window.open('https://t.me/PlacedMarketBot?startapp=faq', '_blank');
+            break;
+        case 'openReviews':
+            openReviewsLink();
+            break;
+        case 'openContact':
+            window.open('https://t.me/PlacedSupport', '_blank');
+            break;
+        case 'resetFilters':
+            resetAllFilters();
+            saveState();
+            break;
+        case 'closeModal':
+            if (activeModal) hideModal(activeModal.id);
+            break;
+        case 'clearAllCart':
+            clearAllCart();
+            break;
+        case 'cartBuy':
+            handleCartBuy();
+            break;
+        case 'checkoutAddToCart':
+            checkoutAddToCart(target.dataset.name, target.dataset.nftId || '', target.dataset.uniqueId || '');
+            break;
+        case 'checkoutAddToCartPacks':
+            checkoutAddToCartPacks();
+            break;
+        case 'checkoutBuy':
+            checkoutBuy(target.dataset.price, target.dataset.name, target.dataset.nftId || '', target.dataset.uniqueId || '', target.dataset.section);
+            break;
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') hideAllModals();
+});
+
+document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('gesturestart', e => e.preventDefault());
+
+document.addEventListener('selectstart', function(e) {
+    const allowedSelectors = ['.bank-card-value', '#priceValue', '.search-input'];
+    if (!e.target.closest(allowedSelectors.join(','))) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+window.addEventListener('beforeunload', saveState);
+</script>
+</body>
+</html>
