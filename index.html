@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;500;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Products</title>
+    <title>Товары</title>
     <style>
         * {
             margin: 0;
@@ -187,7 +187,7 @@
         
         .page-container {
             width: 100%;
-            padding: 0px;
+            padding: 90px 0 0 0;
             min-height: 100%;
         }
         
@@ -203,7 +203,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 14px;
-            margin-top: -8px;
+            margin-top: 0;
             padding: 0;
             width: 100%;
         }
@@ -1727,7 +1727,7 @@
             gap: 8px;
             width: 100%;
             max-width: 400px;
-            padding: 0 20px;
+            padding: 0 16px;
             z-index: 10000;
         }
 
@@ -1856,11 +1856,11 @@
                 <div class="menu-slider" id="menuSlider"></div>
                 <div class="menu-item market-active" data-index="0" id="marketItem">
                     <img class="menu-icon" src="https://storage.botpapa.me/files/39160a70-3987-11f1-bef9-f1ec7a2c6e45.png">
-                    <span>Store</span>
+                    <span>Магазин</span>
                 </div>
                 <div class="menu-item" data-index="1" id="bundleItem">
                     <img class="menu-icon" src="https://storage.botpapa.me/files/29485700-0c5b-11f1-b904-772788f215dd.png">
-                    <span>Packs</span>
+                    <span>Наборы</span>
                 </div>
             </div>
         </nav>
@@ -1873,441 +1873,62 @@
         <div class="content-wrapper">
             <div class="buttons-container">
                 <button class="star-button" data-modal="statisticsModal" id="statisticsButton">
-                    <img src="https://storage.botpapa.me/files/d8b72ef0-a0f9-11f0-b4a0-d13431a40d5b.png" alt="Star Icon">
+                    <img src="https://storage.botpapa.me/files/d8b72ef0-a0f9-11f0-b4a0-d13431a40d5b.png" alt="Иконка звезды">
                     <span class="star-number">96 573</span>
                 </button>
                 <div class="right-buttons">
                     <button class="buy-ton-button" id="buyTonButton">
                         <div class="buy-ton-left-icon">
-                            <img src="https://storage.botpapa.me/files/45de9ba0-d370-11f0-99ce-adc3d9f181f8.png" alt="TON Icon">
+                            <img src="https://storage.botpapa.me/files/45de9ba0-d370-11f0-99ce-adc3d9f181f8.png" alt="Иконка TON">
                         </div>
                         0 RUB
                         <div class="buy-ton-right-icon">
-                            <img src="https://storage.botpapa.me/files/1d61ec40-d370-11f0-99ce-adc3d9f181f8.png" alt="Arrow Icon">
+                            <img src="https://storage.botpapa.me/files/1d61ec40-d370-11f0-99ce-adc3d9f181f8.png" alt="Иконка стрелки">
                         </div>
                     </button>
                 </div>
             </div>
             
             <div class="header-image" onclick="window.open('https://t.me/PlacedCommunity', '_blank')">
-    <img src="https://storage.botpapa.me/files/b804c7b0-0c3f-11f1-b904-772788f215dd.jpeg" alt="Header Image">
+    <img src="https://storage.botpapa.me/files/b804c7b0-0c3f-11f1-b904-772788f215dd.jpeg" alt="Изображение шапки">
 </div>
             
             <div class="filters-row">
                 <div class="search-filter">
                     <div class="search-icon">
-                        <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Search">
+                        <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Поиск">
                     </div>
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search Products" autocomplete="off">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Поиск товаров" autocomplete="off">
                 </div>
                 <button class="search-button" id="searchButton" data-action="applySearch">
-                    <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Search">
+                    <img src="https://img.icons8.com/fluency-systems-filled/48/search.png" alt="Поиск">
                 </button>
                 <div class="filter-button cart-button-main" data-modal="cartModal" id="cartButton">
-                    <img src="https://storage.botpapa.me/files/d05f9f80-cd54-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-main-icon">
+                    <img src="https://storage.botpapa.me/files/d05f9f80-cd54-11f0-aa62-f3a4d21b862b.svg" alt="Корзина" class="cart-main-icon">
                     <span class="cart-main-text" id="cartText">0₽</span>
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Arrow" class="cart-arrow-icon">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Стрелка" class="cart-arrow-icon">
                 </div>
             </div>
             
             <div class="filters-row second-row">
                 <div class="filter-button reset-button" id="resetFiltersButton" data-action="resetFilters">
-                    <img src="https://img.icons8.com/sf-black-filled/64/filter.png" alt="Reset">
+                    <img src="https://img.icons8.com/sf-black-filled/64/filter.png" alt="Сброс">
                 </div>
                 <div class="filter-item wide" data-modal="collectionsModal" id="collectionsFilter">
-    <span id="collectionsText">Collection</span>
+    <span id="collectionsText">Коллекция</span>
     <div class="filter-arrow">
-        <img src="https://storage.botpapa.me/files/93183790-ccff-11f0-aa62-f3a4d21b862b.png" alt="Arrow">
+        <img src="https://storage.botpapa.me/files/93183790-ccff-11f0-aa62-f3a4d21b862b.png" alt="Стрелка">
     </div>
                 </div>
                 <div class="filter-item wide" data-modal="sortingModal" id="sortingFilter">
-                    <span id="sortingText">Selection</span>
+                    <span id="sortingText">Сортировка</span>
                     <div class="filter-arrow">
-                        <img src="https://storage.botpapa.me/files/93183790-ccff-11f0-aa62-f3a4d21b862b.png" alt="Arrow">
+                        <img src="https://storage.botpapa.me/files/93183790-ccff-11f0-aa62-f3a4d21b862b.png" alt="Стрелка">
                     </div>
                 </div>
             </div>
             
             <div class="cards-grid" id="cardsContainer">
-                <!-- Store Products -->
-                <div class="card" data-category="all" data-subcategory="gifts" data-order="1" data-price="20" data-name="13 Stars" data-image="https://storage.botpapa.me/files/bda806a0-262f-11f1-bef9-f1ec7a2c6e45.jpeg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st13n" data-stat-icon="https://storage.botpapa.me/files/3622b940-c492-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470372" data-available="on" data-unique-id="stars_13" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/bda806a0-262f-11f1-bef9-f1ec7a2c6e45.jpeg" alt="13 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">13 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="20" data-card-name="13 Stars" data-card-image="https://storage.botpapa.me/files/bda806a0-262f-11f1-bef9-f1ec7a2c6e45.jpeg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st13n" data-card-nft-id="" data-card-product-id="92470372">20₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="gifts" data-order="2" data-price="34" data-name="21 Stars" data-image="https://storage.botpapa.me/files/73481e20-c161-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st21n" data-stat-icon="https://storage.botpapa.me/files/42fb9a60-c492-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470373" data-available="on" data-unique-id="stars_21" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/73481e20-c161-11f0-b4a0-d13431a40d5b.jpg" alt="21 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">21 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="34" data-card-name="21 Stars" data-card-image="https://storage.botpapa.me/files/73481e20-c161-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st21n" data-card-nft-id="" data-card-product-id="92470373">34₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="gifts" data-order="3" data-price="66" data-name="43 Stars" data-image="https://storage.botpapa.me/files/c4c7c1a0-262f-11f1-bef9-f1ec7a2c6e45.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st43n" data-stat-icon="https://storage.botpapa.me/files/d3caca30-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470374" data-available="on" data-unique-id="stars_43" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/c4c7c1a0-262f-11f1-bef9-f1ec7a2c6e45.png" alt="43 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">43 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="66" data-card-name="43 Stars" data-card-image="https://storage.botpapa.me/files/c4c7c1a0-262f-11f1-bef9-f1ec7a2c6e45.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st43n" data-card-nft-id="" data-card-product-id="92470374">66₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="gifts" data-order="4" data-price="129" data-name="85 Stars" data-image="https://storage.botpapa.me/files/9cf74b30-0c2d-11f1-b904-772788f215dd.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st85n" data-stat-icon="https://storage.botpapa.me/files/fb446170-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470375" data-available="on" data-unique-id="stars_85" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1335b880-0c2f-11f1-b904-772788f215dd.jpeg" alt="85 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">85 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="129" data-card-name="85 Stars" data-card-image="https://storage.botpapa.me/files/9cf74b30-0c2d-11f1-b904-772788f215dd.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st85n" data-card-nft-id="" data-card-product-id="92470375">129₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="5" data-price="135" data-name="100 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st100n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470362" data-available="on" data-unique-id="stars_100" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="100 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">100 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="135" data-card-name="100 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st100n" data-card-nft-id="" data-card-product-id="92470362">135₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="6" data-price="189" data-name="150 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st150n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470363" data-available="on" data-unique-id="stars_150" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="150 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">150 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="189" data-card-name="150 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st150n" data-card-nft-id="" data-card-product-id="92470363">189₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="7" data-price="315" data-name="250 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st250n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470364" data-available="on" data-unique-id="stars_250" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="250 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">250 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="315" data-card-name="250 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st250n" data-card-nft-id="" data-card-product-id="92470364">315₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="8" data-price="439" data-name="350 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st350n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470365" data-available="on" data-unique-id="stars_350" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="350 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">350 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="439" data-card-name="350 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st350n" data-card-nft-id="" data-card-product-id="92470365">439₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="9" data-price="625" data-name="500 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st500n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470366" data-available="on" data-unique-id="stars_500" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="500 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">500 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="625" data-card-name="500 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st500n" data-card-nft-id="" data-card-product-id="92470366">625₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="10" data-price="929" data-name="750 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st750n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470367" data-available="on" data-unique-id="stars_750" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="750 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">750 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="929" data-card-name="750 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st750n" data-card-nft-id="" data-card-product-id="92470367">929₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="11" data-price="1235" data-name="1000 Stars" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1000n" data-stat-icon="https://storage.botpapa.me/files/36335080-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470368" data-available="on" data-unique-id="stars_1000" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="1000 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">1000 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="1235" data-card-name="1000 Stars" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1000n" data-card-nft-id="" data-card-product-id="92470368">1235₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="12" data-price="1839" data-name="1500 Stars" data-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1500n" data-stat-icon="https://storage.botpapa.me/files/695c6410-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470369" data-available="on" data-unique-id="stars_1500" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" alt="1500 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">1500 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="1839" data-card-name="1500 Stars" data-card-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st1500n" data-card-nft-id="" data-card-product-id="92470369">1839₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="13" data-price="3065" data-name="2500 Stars" data-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st2500n" data-stat-icon="https://storage.botpapa.me/files/7e9c2630-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470370" data-available="on" data-unique-id="stars_2500" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" alt="2500 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">2500 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="3065" data-card-name="2500 Stars" data-card-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st2500n" data-card-nft-id="" data-card-product-id="92470370">3065₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-category="all" data-subcategory="stars" data-order="14" data-price="6129" data-name="5000 Stars" data-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st5000n" data-stat-icon="https://storage.botpapa.me/files/7e9c2630-c491-11f0-b4a0-d13431a40d5b.png" data-stat-link="" data-link="https://t.me/PlacedMarketBot" data-nft-id="" data-product-id="92470371" data-available="on" data-unique-id="stars_5000" data-section="store">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" alt="5000 Stars">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">5000 Stars</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="6129" data-card-name="5000 Stars" data-card-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/st5000n" data-card-nft-id="" data-card-product-id="92470371">6129₽</button>
-                            <button class="cart-button" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Packs Products -->
-                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="15" data-price="289" data-name="1 Month" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr1m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_1m" data-available="off" data-unique-id="premium_1m" data-section="packs" data-collection-text="Telegram Premium">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="1 Month">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">1 Month</div>
-                        <div class="card-buttons">
-                            <button class="price-button disabled" data-modal="checkoutOrderModal" data-card-price="289" data-card-name="1 Month" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr1m" data-card-nft-id="" data-card-product-id="premium_1m" data-card-collection="Telegram Premium">289₽</button>
-                            <button class="cart-button disabled" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="16" data-price="869" data-name="3 Months" data-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr3m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_3m" data-available="on" data-unique-id="premium_3m" data-section="packs" data-collection-text="Telegram Premium">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" alt="3 Months">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">3 Months</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="869" data-card-name="3 Months" data-card-image="https://storage.botpapa.me/files/1ec68810-c2d7-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr3m" data-card-nft-id="" data-card-product-id="premium_3m" data-card-collection="Telegram Premium">869₽</button>
-                            <button class="cart-button disabled" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="17" data-price="1189" data-name="6 Months" data-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr6m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_6m" data-available="on" data-unique-id="premium_6m" data-section="packs" data-collection-text="Telegram Premium">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" alt="6 Months">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">6 Months</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="1189" data-card-name="6 Months" data-card-image="https://storage.botpapa.me/files/06081dc0-c77d-11f0-aa62-f3a4d21b862b.png" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr6m" data-card-nft-id="" data-card-product-id="premium_6m" data-card-collection="Telegram Premium">1189₽</button>
-                            <button class="cart-button disabled" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" style="display: none;" data-category="premium" data-subcategory="premium" data-order="18" data-price="2099" data-name="12 Months" data-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr12m" data-stat-icon="" data-stat-link="" data-link="" data-nft-id="" data-product-id="premium_12m" data-available="on" data-unique-id="premium_12m" data-section="packs" data-collection-text="Telegram Premium">
-                    <div class="card-image-container">
-                        <div class="card-image-wrapper">
-                            <div class="card-image-slider">
-                                <div class="card-image-slide">
-                                    <img src="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" alt="12 Months">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-title">12 Months</div>
-                        <div class="card-buttons">
-                            <button class="price-button" data-modal="checkoutOrderModal" data-card-price="2099" data-card-name="12 Months" data-card-image="https://storage.botpapa.me/files/cc0782b0-c0a0-11f0-b4a0-d13431a40d5b.jpg" data-card-iframe="https://app.botpapa.me/website/%40PlacedMarketBot/pr12m" data-card-nft-id="" data-card-product-id="premium_12m" data-card-collection="Telegram Premium">2099₽</button>
-                            <button class="cart-button disabled" data-action="addToCart">
-                                <img src="https://storage.botpapa.me/files/52a92dc0-cd42-11f0-aa62-f3a4d21b862b.svg" alt="Cart" class="cart-icon">
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -2316,11 +1937,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left payment-header" data-action="paymentBack">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Order Payment</div>
+                <div class="modal-header-center">Оплата заказа</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body">
@@ -2330,12 +1951,12 @@
                             <div class="bank-card-item full-width" id="cardNumberItem">
                                 <div class="bank-card-content">
                                     <div class="bank-card-icon-left" id="cardIcon">
-                                        <img src="https://storage.botpapa.me/files/812cea30-e401-11f0-b904-772788f215dd.png" alt="T-Bank">
+                                        <img src="https://storage.botpapa.me/files/812cea30-e401-11f0-b904-772788f215dd.png" alt="Т-Банк">
                                     </div>
                                     <div class="bank-card-value" id="cardNumberValue">2200 7019 3499 0208</div>
                                 </div>
                                 <div class="bank-card-icon-right" data-action="copyCardNumber">
-                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Copy">
+                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Копировать">
                                 </div>
                             </div>
                         </div>
@@ -2346,7 +1967,7 @@
                                     <div class="bank-card-value" id="bankNameValue">Т-Банк</div>
                                 </div>
                                 <div class="bank-card-icon-right">
-                                    <img src="https://storage.botpapa.me/files/816f77a0-e3e4-11f0-b904-772788f215dd.png" alt="Select">
+                                    <img src="https://storage.botpapa.me/files/816f77a0-e3e4-11f0-b904-772788f215dd.png" alt="Выбрать">
                                 </div>
                             </div>
                             
@@ -2355,7 +1976,7 @@
                                     <div class="bank-card-value" id="priceValue">129₽</div>
                                 </div>
                                 <div class="bank-card-icon-right" data-action="copyPrice">
-                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Copy">
+                                    <img src="https://storage.botpapa.me/files/f52aea20-e412-11f0-b904-772788f215dd.png" alt="Копировать">
                                 </div>
                             </div>
                         </div>
@@ -2364,13 +1985,13 @@
                 
                 <div class="transfer-data-card">
                     <div class="transfer-data-header">
-                        <button class="fill-transfer-btn">Fill in Transfer Data</button>
+                        <button class="fill-transfer-btn">Заполнить данные перевода</button>
                         <div class="transfer-data-controls">
                             <div class="transfer-info-icon" data-action="info">
-                                <img src="https://storage.botpapa.me/files/407a3690-e416-11f0-b904-772788f215dd.png" alt="Info">
+                                <img src="https://storage.botpapa.me/files/407a3690-e416-11f0-b904-772788f215dd.png" alt="Инфо">
                             </div>
                             <div class="transfer-info-icon" data-action="support">
-                                <img src="https://storage.botpapa.me/files/52991480-db61-11f0-b904-772788f215dd.png" alt="Support">
+                                <img src="https://storage.botpapa.me/files/52991480-db61-11f0-b904-772788f215dd.png" alt="Поддержка">
                             </div>
                         </div>
                     </div>
@@ -2390,11 +2011,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left" data-action="closeModal">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Cart Products</div>
+                <div class="modal-header-center">Товары в корзине</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body" id="cartModalBody"></div>
@@ -2405,11 +2026,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left" data-action="closeModal">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Place an Order</div>
+                <div class="modal-header-center">Оформить заказ</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body" id="checkoutModalBody"></div>
@@ -2420,26 +2041,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left" data-action="closeModal">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Collection</div>
+                <div class="modal-header-center">Коллекция</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="selection-card">
                     <div class="selection-item" data-action="selectCollection" data-collection="all">
                         <div class="selection-icon" id="collectionAll"></div>
-                        <div class="selection-text">All items</div>
+                        <div class="selection-text">Все товары</div>
                     </div>
                     <div class="selection-item" data-action="selectCollection" data-collection="gifts">
                         <div class="selection-icon" id="collectionGifts"></div>
-                        <div class="selection-text">Telegram Gifts</div>
+                        <div class="selection-text">Подарки</div>
                     </div>
                     <div class="selection-item" data-action="selectCollection" data-collection="stars">
                         <div class="selection-icon" id="collectionStars"></div>
-                        <div class="selection-text">Telegram Stars</div>
+                        <div class="selection-text">Звёзды</div>
                     </div>
                 </div>
             </div>
@@ -2450,26 +2071,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left" data-action="closeModal">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Selection</div>
+                <div class="modal-header-center">Сортировка</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="selection-card">
                     <div class="selection-item" data-action="selectSorting" data-sorting="random">
                         <div class="selection-icon" id="sortingRandom"></div>
-                        <div class="selection-text">Random</div>
+                        <div class="selection-text">Случайно</div>
                     </div>
                     <div class="selection-item" data-action="selectSorting" data-sorting="low">
                         <div class="selection-icon" id="sortingLow"></div>
-                        <div class="selection-text">Price: Low to High</div>
+                        <div class="selection-text">Цена: по возрастанию</div>
                     </div>
                     <div class="selection-item" data-action="selectSorting" data-sorting="high">
                         <div class="selection-icon" id="sortingHigh"></div>
-                        <div class="selection-text">Price: High to Low</div>
+                        <div class="selection-text">Цена: по убыванию</div>
                     </div>
                 </div>
             </div>
@@ -2480,11 +2101,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left" data-action="closeModal">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Stars Statistics</div>
+                <div class="modal-header-center">Статистика звёзд</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body">
@@ -2492,8 +2113,8 @@
                     <div class="statistics-slider-container">
                         <div class="statistics-slider-line">
                             <div class="statistics-slider-indicator" id="statisticsIndicator"></div>
-                            <div class="statistics-slider-option active" data-stat-position="0">Volume</div>
-                            <div class="statistics-slider-option" data-stat-position="1">Orders</div>
+                            <div class="statistics-slider-option active" data-stat-position="0">Объём</div>
+                            <div class="statistics-slider-option" data-stat-position="1">Заказы</div>
                         </div>
                     </div>
                     
@@ -2501,7 +2122,7 @@
                         <div class="statistics-island">
                             <div class="statistics-island-content">
                                 <div class="statistics-icon">
-                                    <img src="https://storage.botpapa.me/files/d8b72ef0-a0f9-11f0-b4a0-d13431a40d5b.png" alt="Star Icon">
+                                    <img src="https://storage.botpapa.me/files/d8b72ef0-a0f9-11f0-b4a0-d13431a40d5b.png" alt="Иконка звезды">
                                 </div>
                                 <div class="statistics-value" id="starsValue">96 573</div>
                             </div>
@@ -2513,8 +2134,8 @@
                 </div>
                 
                 <div class="statistics-buttons-row">
-                    <button class="reviews-button" data-action="openReviews">Reviews</button>
-                    <button class="contact-button" data-action="openContact">Contact</button>
+                    <button class="reviews-button" data-action="openReviews">Отзывы</button>
+                    <button class="contact-button" data-action="openContact">Поддержка</button>
                 </div>
             </div>
         </div>
@@ -2524,16 +2145,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header-left" data-action="backToPayment">
-                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Back" style="transform: rotate(90deg);">
+                    <img src="https://img.icons8.com/material-rounded/96/chevron-down.png" alt="Назад" style="transform: rotate(90deg);">
                 </div>
-                <div class="modal-header-center">Success Sent</div>
+                <div class="modal-header-center">Отправлено</div>
                 <div class="modal-header-right" data-action="closeModal">
-                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Close">
+                    <img src="https://img.icons8.com/external-glyph-silhouettes-icons-papa-vector/78/external-Cross-Mark-interface-glyph-silhouettes-icons-papa-vector.png" alt="Закрыть">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="success-sent-card">
-    <h2>Transfer Data has been Sent</h2>
+    <h2>Данные перевода отправлены</h2>
     <p>Если вы отправили ук. сумму и также заполнили данные перевода, то заказ будет выполнен менее чем за 5-20 м.</p>
     <p style="margin-top: 12px; color: #aaaaaa;">Если у вас нету имени пользователя, мы не сможем выполнить ваш заказ.</p>
 </div>
@@ -2541,6 +2162,7 @@
         </div>
     </div>
 
+<script src="products.js"></script>
 <script>
 function triggerVibration() {
     if (window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback) {
@@ -2828,7 +2450,7 @@ function checkProductAvailability(cardElement) {
 
 function showProductUnavailableError() {
     triggerVibration();
-    alert('This product is currently unavailable. Please try another product.');
+    alert('Этот товар сейчас недоступен. Попробуйте выбрать другой товар.');
 }
 
 function updateBankCard() {
@@ -2924,7 +2546,7 @@ function searchProducts() {
         const cardsContainer = document.getElementById('cardsContainer');
         const noResults = document.createElement('div');
         noResults.className = 'no-results';
-        noResults.textContent = `No products found matching "${searchInput.value}"`;
+        noResults.textContent = `Товары по запросу "${searchInput.value}" не найдены`;
         cardsContainer.appendChild(noResults);
     }
     
@@ -2937,7 +2559,7 @@ function searchProducts() {
 
 function applyCollectionFilter() {
     if (currentMenuTab === 'packs') {
-        alert('Sorting collections in this section is not available');
+        alert('Сортировка коллекций в этом разделе недоступна');
         return;
     }
     searchProducts();
@@ -2950,14 +2572,14 @@ function updateCollectionDisplayText() {
     
     switch(currentCollectionFilter) {
         case 'gifts':
-            collectionsText.textContent = 'Gifts';
+            collectionsText.textContent = 'Подарки';
             break;
         case 'stars':
-            collectionsText.textContent = 'Stars';
+            collectionsText.textContent = 'Звёзды';
             break;
         case 'all':
         default:
-            collectionsText.textContent = 'Collection';
+            collectionsText.textContent = 'Коллекция';
             break;
     }
 }
@@ -3010,14 +2632,14 @@ function updateSortingDisplayText() {
     
     switch(currentSorting) {
         case 'low':
-            sortingText.textContent = 'Low to High';
+            sortingText.textContent = 'По возрастанию';
             break;
         case 'high':
-            sortingText.textContent = 'High to Low';
+            sortingText.textContent = 'По убыванию';
             break;
         case 'random':
         default:
-            sortingText.textContent = 'Selection';
+            sortingText.textContent = 'Сортировка';
             break;
     }
 }
@@ -3028,10 +2650,10 @@ function resetAllFilters() {
     if (searchInput) searchInput.value = '';
     
     currentCollectionFilter = 'all';
-    document.getElementById('collectionsText').textContent = 'Collection';
+    document.getElementById('collectionsText').textContent = 'Коллекция';
     
     currentSorting = 'random';
-    document.getElementById('sortingText').textContent = 'Selection';
+    document.getElementById('sortingText').textContent = 'Сортировка';
     
     searchProducts();
     
@@ -3064,7 +2686,7 @@ function updateResetButtonState() {
 
 function showPacksError() {
     triggerVibration();
-    alert('This product cannot be added to the cart');
+    alert('Этот товар нельзя добавить в корзину');
 }
 
 function toggleCart(button) {
@@ -3104,7 +2726,7 @@ function toggleCart(button) {
     } else {
         if (cart.length >= 2) {
             triggerVibration();
-            alert('You can add a maximum of 2 products to the cart');
+            alert('В корзину можно добавить максимум 2 товара');
             return;
         }
         
@@ -3183,7 +2805,7 @@ function toggleCartFromModal(name, nftId, uniqueId) {
     } else {
         if (cart.length >= 2) {
             triggerVibration();
-            alert('You can add a maximum of 2 products to the cart');
+            alert('В корзину можно добавить максимум 2 товара');
             return;
         }
         
@@ -3340,7 +2962,7 @@ function handleCartBuy() {
     
     if (hasPacksItems) {
         triggerVibration();
-        alert('Premium products cannot be purchased through cart');
+        alert('Premium-товары нельзя купить через корзину');
         return;
     }
 
@@ -3365,7 +2987,7 @@ function handleCartBuy() {
         
         const combination = combinationMap[uniqueIds];
         if (!combination) {
-            alert('This combination of products is not available for purchase together.');
+            alert('Такое сочетание товаров нельзя купить вместе.');
             return;
         }
         iframeUrl = combination.iframe;
@@ -3380,7 +3002,7 @@ function handleCartBuy() {
             uniqueId: uniqueIds
         };
     } else {
-        alert('You can only purchase up to 2 items at once.');
+        alert('За один раз можно купить не более 2 товаров.');
         return;
     }
 
@@ -3409,11 +3031,11 @@ function getCollectionText(cardElement) {
     if (cardElement) {
         const section = cardElement.getAttribute('data-section');
         if (section === 'packs') {
-            return 'Telegram Premium';
+            return 'Premium';
         }
         const subcategory = cardElement.getAttribute('data-subcategory');
-        if (subcategory === 'gifts') return 'Telegram Gifts';
-        if (subcategory === 'stars') return 'Telegram Stars';
+        if (subcategory === 'gifts') return 'Подарки';
+        if (subcategory === 'stars') return 'Звёзды';
     }
     return '';
 }
@@ -3430,7 +3052,7 @@ function updateCartDisplay() {
     if (!cartModalBody) return;
     
     if (cart.length === 0) {
-        cartModalBody.innerHTML = '<div class="empty-cart" style="color: #888; text-align: center; padding: 20px;">Cart is empty</div>';
+        cartModalBody.innerHTML = '<div class="empty-cart" style="color: #888; text-align: center; padding: 20px;">Корзина пуста</div>';
         return;
     }
     
@@ -3454,13 +3076,13 @@ function updateCartDisplay() {
                         </div>
                         <div class="cart-item-collection-row">
                             <span class="cart-item-collection">${collectionText}</span>
-                            <span class="cart-item-price-label">Price</span>
+                            <span class="cart-item-price-label">Цена</span>
                         </div>
                     </div>
                 </div>
                 <div class="cart-divider"></div>
                 <div class="cart-commission-row">
-                    <span class="cart-commission-label">Commission</span>
+                    <span class="cart-commission-label">Комиссия</span>
                     <span class="cart-commission-value">${commission}₽</span>
                 </div>
             </div>
@@ -3472,8 +3094,8 @@ function updateCartDisplay() {
     const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
     cartHTML += `
         <div class="cart-buttons-row">
-            <button class="clear-all-btn" data-action="clearAllCart">Clear All</button>
-            <button class="cart-buy-btn" data-action="cartBuy">Buy ${totalPrice}₽</button>
+            <button class="clear-all-btn" data-action="clearAllCart">Очистить всё</button>
+            <button class="cart-buy-btn" data-action="cartBuy">Купить ${totalPrice}₽</button>
         </div>
     `;
     
@@ -3528,11 +3150,11 @@ function updateCheckoutOrderModalContent() {
     let addToCartButton = '';
     if (!isPacksProduct) {
         addToCartButton = `<button class="checkout-add-to-cart-btn ${isInCart ? 'added' : ''}" data-action="checkoutAddToCart" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
-                                ${isInCart ? 'Remove' : 'Add to Cart'}
+                                ${isInCart ? 'Убрать' : 'В корзину'}
                           </button>`;
     } else {
         addToCartButton = `<button class="checkout-add-to-cart-btn" data-action="checkoutAddToCartPacks" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}">
-                                Add to Cart
+                                В корзину
                           </button>`;
     }
     
@@ -3551,20 +3173,20 @@ function updateCheckoutOrderModalContent() {
                     </div>
                     <div class="checkout-product-collection-row">
                         <span class="checkout-product-collection">${finalCollectionText}</span>
-                        <span class="checkout-product-price-label">Price</span>
+                        <span class="checkout-product-price-label">Цена</span>
                     </div>
                 </div>
             </div>
             <div class="checkout-divider"></div>
             <div class="checkout-commission-row">
-                <span class="checkout-commission-label">Commission</span>
+                <span class="checkout-commission-label">Комиссия</span>
                 <span class="checkout-commission-value">${commission}₽</span>
             </div>
         </div>
         <div class="checkout-buttons-row">
             ${addToCartButton}
             <button class="checkout-buy-btn" data-action="checkoutBuy" data-price="${price}" data-name="${name}" data-nft-id="${nftId || ''}" data-unique-id="${uniqueId}" data-section="${isPacksProduct ? 'packs' : 'store'}">
-                Buy ${price}₽
+                Купить ${price}₽
             </button>
         </div>
     `;
@@ -3578,7 +3200,7 @@ function checkoutAddToCart(name, nftId, uniqueId) {
 
 function checkoutAddToCartPacks() {
     triggerVibration();
-    alert('Premium products cannot be added to cart');
+    alert('Premium-товары нельзя добавить в корзину');
 }
 
 function checkoutBuy(price, name, nftId, uniqueId, section) {
@@ -3608,7 +3230,7 @@ function checkoutBuy(price, name, nftId, uniqueId, section) {
 
 function selectCollection(collection) {
     if (currentMenuTab === 'packs') {
-        alert('Sorting collections in this section is not available');
+        alert('Сортировка коллекций в этом разделе недоступна');
         return;
     }
     
@@ -3819,8 +3441,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateBankCard();
     updateCartTotal();
     
-    document.getElementById('collectionsText').textContent = 'Collection';
-    document.getElementById('sortingText').textContent = 'Selection';
+    document.getElementById('collectionsText').textContent = 'Коллекция';
+    document.getElementById('sortingText').textContent = 'Сортировка';
     
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
@@ -3884,7 +3506,7 @@ document.addEventListener('click', function(e) {
             }
             
             if (modalId === 'collectionsModal' && currentMenuTab === 'packs') {
-                alert('Sorting collections in this section is not available');
+                alert('Сортировка коллекций в этом разделе недоступна');
                 return;
             }
             
@@ -3899,7 +3521,7 @@ document.addEventListener('click', function(e) {
         
         if (e.target.closest('#buyTonButton')) {
             triggerVibration();
-            alert('Wallet function is temporarily unavailable');
+            alert('Функция кошелька временно недоступна');
             return;
         }
         
